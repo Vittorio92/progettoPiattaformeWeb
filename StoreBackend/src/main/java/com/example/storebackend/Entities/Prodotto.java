@@ -1,10 +1,8 @@
-package org.example.Entities;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import javax.persistence.*;
+package com.example.storebackend.Entities;
 
-import jdk.jfr.DataAmount;
 import lombok.Data;
-import lombok.ToString;
+
+import jakarta.persistence.*;
 
 @Entity
 @Data
@@ -25,5 +23,9 @@ public class Prodotto {
     public Prodotto(int qnt, float prezzo){
         this.qnt=qnt;
         this.prezzo=prezzo;
+    }
+
+    public Prodotto(){
+
     }
 }

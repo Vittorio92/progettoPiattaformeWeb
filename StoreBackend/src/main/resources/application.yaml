@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: StoreCalcio
+
+
+server:
+  port: 8081

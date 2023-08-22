@@ -1,20 +1,20 @@
-package org.example.Entities;
+package com.example.storebackend.Entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import javax.persistence.*;
+import jakarta.persistence.*;
 import lombok.Data;
 @Entity
 @Data
-@Table(name="Utente",schema="progettpstoredb")
+@Table(name="Utente",schema="progettostoredb")
 public class Utente {
     public Utente(String nome, String cognome, String mail){
         this.nome=nome;
         this.cognome=cognome;
-        this.mail=mail;
+        this.email=mail;
     }
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="id", nullable=false)
     private int id;
 
