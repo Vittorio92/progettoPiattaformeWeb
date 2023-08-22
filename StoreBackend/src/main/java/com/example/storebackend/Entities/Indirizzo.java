@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "Indirizzo", schema = "progettostoredb")
+@Table(name = "indirizzo", schema = "progettostoredb")
 public class Indirizzo {
 
     @Id
@@ -24,6 +24,10 @@ public class Indirizzo {
 
     @Column(name = "cap", nullable = false)
     private int cap;
+
+    @ManyToOne(optional = false, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "utente", referencedColumnName = "id")
+    private Utente utente;
 
     public Indirizzo (String citta, String via, int numeroCivico, int cap){
         this.citta=citta;
