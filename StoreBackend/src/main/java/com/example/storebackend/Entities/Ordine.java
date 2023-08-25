@@ -27,9 +27,9 @@ public class Ordine {
     private Utente acquirente;
 
     @OneToMany(mappedBy = "ordine", cascade = CascadeType.MERGE)
-    private List<ProdottiInCarrello> carrello;
+    private List<ProdottoInCarrello> carrello;
 
-    public Ordine(List<ProdottiInCarrello> carrello, Utente acquirente){
+    public Ordine(List<ProdottoInCarrello> carrello, Utente acquirente){
         this.acquirente=acquirente;
         this.carrello=carrello;
 

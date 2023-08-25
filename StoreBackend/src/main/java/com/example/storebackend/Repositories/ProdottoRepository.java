@@ -1,6 +1,7 @@
 package com.example.storebackend.Repositories;
 
 import com.example.storebackend.Entities.Prodotto;
+import com.example.storebackend.Enum.Tipologia;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -16,7 +17,9 @@ public interface ProdottoRepository extends JpaRepository<Prodotto, Integer> {
 
     @Override
     void deleteById(Integer id);
-    Prodotto FindByNomeAndSquadraAndTipologia(String nome,String squadra,String tipologia);
+
+    Boolean existsByNomeAndSquadraAndTipologia(String nome, String squadra, Tipologia tipologia);
+    Prodotto findByNomeAndSquadraAndTipologia(String nome, String squadra, Tipologia tipologia);
 
     List<Prodotto> findBySquadra(String squadra);
 

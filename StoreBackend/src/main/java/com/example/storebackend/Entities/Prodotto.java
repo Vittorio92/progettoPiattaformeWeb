@@ -42,9 +42,9 @@ public class Prodotto {
     @Enumerated(EnumType.STRING)
     private Tipologia tipologia;
 
-    @OneToMany(targetEntity = ProdottiInCarrello.class, mappedBy = "prodotto", cascade = CascadeType.MERGE)
+    @OneToMany(targetEntity = ProdottoInCarrello.class, mappedBy = "prodotto", cascade = CascadeType.MERGE)
     @JsonIgnore
-    private List<ProdottiInCarrello> prodottiNelCarrello;
+    private List<ProdottoInCarrello> prodottiNelCarrello;
 
     public Prodotto(int qnt, float prezzo, String nome, String squadra, Tipologia tipologia, String immagine){
         this.qnt=qnt;

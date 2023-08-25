@@ -7,7 +7,7 @@ import lombok.Data;
 @Entity
 @Data
 @Table(name = "prodottiincarrello", schema = "progettostoredb")
-public class ProdottiInCarrello {
+public class ProdottoInCarrello {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,14 +37,14 @@ public class ProdottiInCarrello {
     @JsonIgnore
     private Ordine ordine;
 
-    public ProdottiInCarrello(Prodotto p, int qnt, float prezzo, Utente u){
+    public ProdottoInCarrello(Prodotto p, int qnt, float prezzo, Utente u){
         this.prezzo=prezzo;
         this.qnt=qnt;
         this.prodotto=p;
         this.utente=u;
     }
 
-    public ProdottiInCarrello(){
+    public ProdottoInCarrello(){
 
     }
 }

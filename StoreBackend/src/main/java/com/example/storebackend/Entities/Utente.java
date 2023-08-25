@@ -30,7 +30,7 @@ public class Utente {
 
     @OneToMany(mappedBy = "utente", cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     @JsonIgnore
-    private List<ProdottiInCarrello> carrello;
+    private List<ProdottoInCarrello> carrello;
 
     @OneToMany(mappedBy = "acquirente", cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     @JsonIgnore
