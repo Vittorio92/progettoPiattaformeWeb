@@ -28,6 +28,9 @@ public class Utente {
     @Column(name="email",nullable=false)
     private String email;
 
+    @Column(name = "dataNascita", nullable = false)
+    private String dataNascita;
+
     @OneToMany(mappedBy = "utente", cascade = {CascadeType.MERGE, CascadeType.REMOVE})
     @JsonIgnore
     private List<ProdottoInCarrello> carrello;
@@ -36,10 +39,11 @@ public class Utente {
     @JsonIgnore
     private List<Ordine> storico;
 
-    public Utente(String nome, String cognome, String mail){
+    public Utente(String nome, String cognome, String email, String dataNascita){
         this.nome=nome;
         this.cognome=cognome;
-        this.email=mail;
+        this.email=email;
+        this.dataNascita=dataNascita;
     }
 
     public Utente(){
