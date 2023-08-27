@@ -4,6 +4,7 @@ import com.example.storebackend.Entities.Indirizzo;
 import com.example.storebackend.Entities.Utente;
 import com.example.storebackend.Repositories.IndirizzoRepository;
 import com.example.storebackend.Repositories.UtenteRepository;
+import com.example.storebackend.Support.Exceptions.IndirizzoEsistenteException;
 import com.example.storebackend.Support.Exceptions.IndirizzoInesistenteException;
 import com.example.storebackend.Support.Exceptions.NessunIndirizzoException;
 import com.example.storebackend.Support.Exceptions.UtenteInesistenteException;
@@ -47,5 +48,46 @@ public class IndirizzoService {
         if(!indirizzoRepository.existsByCapAndViaAndNumeroCivico(cap,via,numeroC))
             throw new IndirizzoInesistenteException();
         return indirizzoRepository.findByCapAndViaAndNumeroCivico(cap,via,numeroC);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW, isolation = Isolation.READ_COMMITTED)
+    public Indirizzo registraIndirizzo(String citta, String via, int cap, int numeroC, int idUtente) throws UtenteInesistenteException, IndirizzoEsistenteException {
+        //verifico l'esistenza dell'utente
+        if(utenteRepository.existsById(idUtente))
+            throw new UtenteInesistenteException();
+        Utente u=utenteRepository.findById(idUtente);
+
+        //verifico l'unicità dell'indirizzo
+        if(indirizzoRepository.existsByCapAndViaAndNumeroCivico(cap, via, numeroC))
+            throw new IndirizzoEsistenteException();
+
+        Indirizzo nuovo=new Indirizzo(citta,via,numeroC,cap);
+        nuovo.setUtente(u);
+
+        //salvo il nuovo indirizzo
+        indirizzoRepository.save(nuovo);
+        return nuovo;
+    }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW, isolation = Isolation.READ_COMMITTED)
+    public Indirizzo aggiornaIndirizzo(Indirizzo indirizzoAggiornato) throws IndirizzoInesistenteException{
+        if(!indirizzoRepository.existsById(indirizzoAggiornato.getId()))
+            throw new IndirizzoInesistenteException();
+
+        Indirizzo nuovo= indirizzoRepository.findById(indirizzoAggiornato.getId());
+        nuovo.setCap(indirizzoAggiornato.getCap());
+        nuovo.setCitta(indirizzoAggiornato.getCitta());
+        nuovo.setVia(indirizzoAggiornato.getVia());
+        nuovo.setNumeroCivico(indirizzoAggiornato.getNumeroCivico());
+        indirizzoRepository.save(nuovo);
+        return nuovo;
+    }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW, isolation = Isolation.READ_COMMITTED)
+    public void eliminaIndirizzo(Indirizzo indirizzo) throws IndirizzoInesistenteException{
+        if(!indirizzoRepository.existsById(indirizzo.getId()))
+            throw new IndirizzoInesistenteException();
+        indirizzoRepository.deleteById(indirizzo.getId());
+
     }
 }

@@ -21,4 +21,6 @@ public interface IndirizzoRepository extends JpaRepository<Indirizzo, Integer> {
     Indirizzo findByCapAndViaAndNumeroCivico(int cap, String via, int numeroCivico);
 
     void deleteById(int id);
+
+    Indirizzo findById(int id);
 }
