@@ -4,6 +4,7 @@ import com.example.storebackend.Entities.ProdottoInCarrello;
 import com.example.storebackend.Entities.Utente;
 import com.example.storebackend.Repositories.ProdottoInCarrelloRepository;
 import com.example.storebackend.Repositories.UtenteRepository;
+import com.example.storebackend.Support.Exceptions.ProdottoInesistenteException;
 import com.example.storebackend.Support.Exceptions.UtenteInesistenteException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,8 @@ public class ProdottoInCarrelloService {
         return prodottoInCarrelloRepository.findById(id);
     }
 
+    //metodo aggiungere prodotto al carrello
+
     @Transactional(propagation = Propagation.REQUIRES_NEW, isolation = Isolation.READ_COMMITTED)
     public void eliminaCarrelloUtente(Utente u) throws UtenteInesistenteException {
         //verifico esistenza utente
@@ -54,5 +57,29 @@ public class ProdottoInCarrelloService {
             throw new UtenteInesistenteException();
         Utente utente = utenteRepository.findByEmail(email);
         return  utente.getCarrello();
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
+    public void rimuoviProdottoInCarrello(ProdottoInCarrello pic){
+        prodottoInCarrelloRepository.delete(pic);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW, isolation = Isolation.READ_COMMITTED)
+    public void diminuisciQuantitaProdottoInCarrello(String email, ProdottoInCarrello pic) throws UtenteInesistenteException, ProdottoInesistenteException {
+        if(!utenteRepository.existsByEmail(email)){
+            throw new UtenteInesistenteException();
+        }
+        if(!prodottoInCarrelloRepository.existsById(pic.getId())){
+            throw new ProdottoInesistenteException();
+        }
+        List<ProdottoInCarrello> carrello = getCarrello(email);
+        for(ProdottoInCarrello p : carrello){
+            if(p.getId() == pic.getId()){
+                if(p.getQnt()==1)
+                    rimuoviProdottoInCarrello(p);
+                else
+                    p.setQnt(p.getQnt()-1);
+            }
+        }
     }
 }

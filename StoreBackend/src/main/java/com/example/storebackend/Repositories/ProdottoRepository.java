@@ -37,5 +37,5 @@ public interface ProdottoRepository extends JpaRepository<Prodotto, Integer> {
             "      (p.squadra LIKE %:squadra% OR :squadra IS NULL) AND "+
             "      (p.tipologia = :tipologia OR :tipologia IS NULL)"
     )
-    List<Prodotto> ricercaAvanzata(@Param( value = "nome") String nome, @Param(value = "squadra") String squadra, @Param(value = "tipologia")String tipologia);
+    List<Prodotto> ricercaAvanzata(@Param( value = "nome") String nome, @Param(value = "squadra") String squadra, @Param(value = "tipologia")Tipologia tipologia);
 }
