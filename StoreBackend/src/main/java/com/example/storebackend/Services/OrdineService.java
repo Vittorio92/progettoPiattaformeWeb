@@ -1,9 +1,6 @@
 package com.example.storebackend.Services;
 
-import com.example.storebackend.Entities.Ordine;
-import com.example.storebackend.Entities.Prodotto;
-import com.example.storebackend.Entities.ProdottoInCarrello;
-import com.example.storebackend.Entities.Utente;
+import com.example.storebackend.Entities.*;
 import com.example.storebackend.Repositories.OrdineRepository;
 import com.example.storebackend.Repositories.ProdottoInCarrelloRepository;
 import com.example.storebackend.Repositories.UtenteRepository;
@@ -82,7 +79,7 @@ public class OrdineService {
     public List<Ordine> findAll(){return ordineRepository.findAll();}
 
     @Transactional(isolation = Isolation.READ_COMMITTED, rollbackFor = ProdottoEsauritoException.class)
-    public Ordine effettuaOrdine(String email) throws ProdottoEsauritoException, CarrelloVuotoException,UtenteInesistenteException, ProdottoInesistenteException{
+    public Ordine effettuaOrdine(String email, Indirizzo indirizzoSpedizione) throws ProdottoEsauritoException, CarrelloVuotoException,UtenteInesistenteException, ProdottoInesistenteException{
         Utente u = utenteRepository.findByEmail(email);
 
         LinkedList<ProdottoInCarrello> prodotti=new LinkedList<>();
@@ -109,6 +106,7 @@ public class OrdineService {
         entityManager.refresh(ordine);
         ordine.setAcquirente(u);
         ordine.setCarrello(prodotti);
+        ordine.setSpedizione(indirizzoSpedizione);
         entityManager.merge(ordine);
 
         return ordine;

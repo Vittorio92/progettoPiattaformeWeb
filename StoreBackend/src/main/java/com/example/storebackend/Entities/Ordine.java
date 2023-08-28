@@ -26,12 +26,17 @@ public class Ordine {
     @JoinColumn(name = "utente")
     private Utente acquirente;
 
+    @ManyToOne
+    @JoinColumn(name = "indirizzo")
+    private Indirizzo spedizione;
+
     @OneToMany(mappedBy = "ordine", cascade = CascadeType.MERGE)
     private List<ProdottoInCarrello> carrello;
 
-    public Ordine(List<ProdottoInCarrello> carrello, Utente acquirente){
+    public Ordine(List<ProdottoInCarrello> carrello, Utente acquirente, Indirizzo spedizione){
         this.acquirente=acquirente;
         this.carrello=carrello;
+        this.spedizione=spedizione;
 
     }
 

@@ -1,5 +1,6 @@
 package com.example.storebackend.Controllers;
 
+import com.example.storebackend.Entities.Indirizzo;
 import com.example.storebackend.Entities.Ordine;
 import com.example.storebackend.Services.OrdineService;
 import com.example.storebackend.Services.ProdottoService;
@@ -11,6 +12,7 @@ import com.example.storebackend.Support.Messaggio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,13 +23,10 @@ public class OrdineController {
     @Autowired
     OrdineService ordineService;
 
-    @Autowired
-    ProdottoService prodottoService;
-
-    @PutMapping("/addOrdine")
-    public ResponseEntity<Ordine> effettuaOridne(@RequestParam(value = "email")String email) {
+    @PostMapping("/addOrdine")
+    public ResponseEntity<Ordine> effettuaOridne(@RequestParam(value = "email")String email, @RequestBody @Validated Indirizzo spedizione) {
         try {
-            return new ResponseEntity<>(ordineService.effettuaOrdine(email), HttpStatus.OK);
+            return new ResponseEntity<>(ordineService.effettuaOrdine(email, spedizione), HttpStatus.OK);
         } catch (CarrelloVuotoException e) {
             return new ResponseEntity(new Messaggio("Il carrello è vuoto."), HttpStatus.BAD_REQUEST);
         } catch (ProdottoEsauritoException e) {
