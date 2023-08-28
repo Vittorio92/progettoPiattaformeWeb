@@ -96,9 +96,9 @@ public class ProdottoService {
         entityManager.lock(prodotto, LockModeType.OPTIMISTIC_FORCE_INCREMENT);
 
         //per evitare eventuali problemi di chiave esterna lo elimino da eventuali carrelli rimasti
-        List<ProdottoInCarrello> carrrelliAssociato = prodotto.getProdottiNelCarrello();
+        List<ProdottoInCarrello> carrrelliAssociati = prodotto.getProdottiNelCarrello();
 
-        for(ProdottoInCarrello pic : carrrelliAssociato){
+        for(ProdottoInCarrello pic : carrrelliAssociati){
             prodottoInCarrelloRepository.delete(pic);
         }
 
@@ -117,7 +117,7 @@ public class ProdottoService {
     }
 
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS, isolation = Isolation.READ_COMMITTED)
-    public List<Prodotto> ricercaAvanzata(String nome, String artista, String tipologia){
+    public List<Prodotto> ricercaAvanzata(String nome, String squadra, String tipologia){
 
         Tipologia t=null;
         try {
@@ -126,7 +126,7 @@ public class ProdottoService {
 
         }
 
-        List<Prodotto> risultato = prodottoRepository.ricercaAvanzata(nome, artista, t);
+        List<Prodotto> risultato = prodottoRepository.ricercaAvanzata(nome, squadra, t);
         return risultato;
     }
 

@@ -39,7 +39,6 @@ public class ProdottoInCarrelloService {
         return prodottoInCarrelloRepository.findById(id);
     }
 
-    //metodo aggiungere prodotto al carrello
 
     @Transactional(propagation = Propagation.REQUIRES_NEW, isolation = Isolation.READ_COMMITTED)
     public void eliminaCarrelloUtente(Utente u) throws UtenteInesistenteException {

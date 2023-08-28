@@ -34,9 +34,6 @@ public class OrdineService {
 
     @PersistenceContext
     private EntityManager entityManager;
-
-    //manca metodo di acquisto
-
     @Transactional(readOnly = true,propagation = Propagation.SUPPORTS, isolation = Isolation.READ_COMMITTED)
     public List<Ordine> getOrdiniUtente(String email) throws UtenteInesistenteException {
         if ( !utenteRepository.existsByEmail(email) ) {
@@ -59,7 +56,6 @@ public class OrdineService {
                 prodottoInCarrelloRepository.delete(prodotto);
             }
         }
-
         //elimino l'ordine
         ordineRepository.deleteById(id);
     }
