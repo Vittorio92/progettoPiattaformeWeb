@@ -1,9 +1,12 @@
 package com.example.storebackend.Services;
 
+import com.example.storebackend.Entities.Prodotto;
 import com.example.storebackend.Entities.ProdottoInCarrello;
 import com.example.storebackend.Entities.Utente;
 import com.example.storebackend.Repositories.ProdottoInCarrelloRepository;
+import com.example.storebackend.Repositories.ProdottoRepository;
 import com.example.storebackend.Repositories.UtenteRepository;
+import com.example.storebackend.Support.Exceptions.ProdottoEsauritoException;
 import com.example.storebackend.Support.Exceptions.ProdottoInesistenteException;
 import com.example.storebackend.Support.Exceptions.UtenteInesistenteException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +25,9 @@ public class ProdottoInCarrelloService {
 
     @Autowired
     private UtenteRepository utenteRepository;
+
+    @Autowired
+    private ProdottoRepository prodottoRepository;
 
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS, isolation = Isolation.READ_COMMITTED)
     public List<ProdottoInCarrello> getAllProdottiInCarrello(){
@@ -82,4 +88,32 @@ public class ProdottoInCarrelloService {
             }
         }
     }
+
+    @Transactional(propagation=Propagation.REQUIRES_NEW,isolation=Isolation.READ_COMMITTED)
+    public void add(String email, Prodotto prod, int qnt) throws UtenteInesistenteException, ProdottoInesistenteException, ProdottoEsauritoException {
+        if( email==null || !utenteRepository.existsByEmail(email))
+            throw new UtenteInesistenteException();
+        if(!prodottoRepository.existsById(prod.getId()))
+            throw new ProdottoInesistenteException();
+
+        ProdottoInCarrello pic;
+
+        //prima controllo se il prodotto è presente nel carrello dell'utente
+        Utente u = utenteRepository.findByEmail(email);
+        if(prodottoInCarrelloRepository.findByUtenteAndProdottoAndOrdine(u,prod,null)!=null){
+            pic = prodottoInCarrelloRepository.findByUtenteAndProdottoAndOrdine(u,prod,null);
+            if( pic.getQnt()+qnt>prod.getQnt())
+                throw new ProdottoEsauritoException();
+            pic.setQnt(pic.getQnt()+qnt);
+        }
+        //questa parte gestisce il caso in cui il prodotto non è presente nel carrello
+        else{
+            if(qnt>prod.getQnt())
+                throw new ProdottoEsauritoException();
+            pic = new ProdottoInCarrello(prod, qnt, prod.getPrezzo(),u);
+            prodottoInCarrelloRepository.save(pic);
+        }
+
+    }
+
 }

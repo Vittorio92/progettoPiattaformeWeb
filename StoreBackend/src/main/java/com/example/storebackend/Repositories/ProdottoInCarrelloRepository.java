@@ -19,6 +19,8 @@ public interface ProdottoInCarrelloRepository extends JpaRepository<ProdottoInCa
     @Override
     void deleteById(Integer id);
 
-    ProdottoInCarrello findByUtenteAndAndProdottoAndOrdine(Utente u, Prodotto p, Ordine o);
+    ProdottoInCarrello findByUtenteAndProdottoAndOrdine(Utente u, Prodotto p, Ordine o);
+
+    ProdottoInCarrello findByProdottoAndOrdine(Prodotto p, Ordine o);
 
 }

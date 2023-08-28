@@ -1,13 +1,15 @@
 package com.example.storebackend.Services;
 
 import com.example.storebackend.Entities.Ordine;
+import com.example.storebackend.Entities.Prodotto;
 import com.example.storebackend.Entities.ProdottoInCarrello;
 import com.example.storebackend.Entities.Utente;
 import com.example.storebackend.Repositories.OrdineRepository;
 import com.example.storebackend.Repositories.ProdottoInCarrelloRepository;
 import com.example.storebackend.Repositories.UtenteRepository;
-import com.example.storebackend.Support.Exceptions.OrdineInesistenteException;
-import com.example.storebackend.Support.Exceptions.UtenteInesistenteException;
+import com.example.storebackend.Support.Exceptions.*;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -15,6 +17,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -28,6 +31,9 @@ public class OrdineService {
 
     @Autowired
     private ProdottoInCarrelloRepository prodottoInCarrelloRepository;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     //manca metodo di acquisto
 
@@ -79,6 +85,37 @@ public class OrdineService {
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS, isolation = Isolation.READ_COMMITTED)
     public List<Ordine> findAll(){return ordineRepository.findAll();}
 
+    @Transactional(isolation = Isolation.READ_COMMITTED, rollbackFor = ProdottoEsauritoException.class)
+    public Ordine effettuaOrdine(String email) throws ProdottoEsauritoException, CarrelloVuotoException,UtenteInesistenteException, ProdottoInesistenteException{
+        Utente u = utenteRepository.findByEmail(email);
 
+        LinkedList<ProdottoInCarrello> prodotti=new LinkedList<>();
+        Ordine ordine=new Ordine();
+
+        for( ProdottoInCarrello pic: u.getCarrello()){
+            int nuovaQnt = pic.getProdotto().getQnt()-pic.getQnt();
+            if(nuovaQnt<0)
+                //non posso effettuare l'acquisto poichè non ho abbastanza prodotti
+                throw new ProdottoEsauritoException();
+            pic.getProdotto().setQnt(nuovaQnt);
+
+            //creo il prodotto che verrà mostrato nell'acquisto
+            ProdottoInCarrello newpic = new ProdottoInCarrello(pic.getProdotto(), pic.getQnt(), pic.getPrezzo(), pic.getUtente());
+            //associo l'ordine al prodotto
+            newpic.setOrdine(ordine);
+            //aggiungo il prodotto alla lista
+            prodotti.add(newpic);
+            //rimuovo il prodotto perchè è venduto
+            prodottoInCarrelloRepository.delete(pic);
+        }
+
+        ordineRepository.save(ordine);
+        entityManager.refresh(ordine);
+        ordine.setAcquirente(u);
+        ordine.setCarrello(prodotti);
+        entityManager.merge(ordine);
+
+        return ordine;
+    }
 
 }
