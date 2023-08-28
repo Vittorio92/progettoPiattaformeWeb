@@ -4,10 +4,7 @@ import com.example.storebackend.Entities.Indirizzo;
 import com.example.storebackend.Entities.Ordine;
 import com.example.storebackend.Services.OrdineService;
 import com.example.storebackend.Services.ProdottoService;
-import com.example.storebackend.Support.Exceptions.CarrelloVuotoException;
-import com.example.storebackend.Support.Exceptions.ProdottoEsauritoException;
-import com.example.storebackend.Support.Exceptions.ProdottoInesistenteException;
-import com.example.storebackend.Support.Exceptions.UtenteInesistenteException;
+import com.example.storebackend.Support.Exceptions.*;
 import com.example.storebackend.Support.Messaggio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,6 +32,8 @@ public class OrdineController {
             return new ResponseEntity(new Messaggio("Prodotto non disponibile."),HttpStatus.BAD_REQUEST);
         } catch (ProdottoInesistenteException e) {
             return new ResponseEntity(new Messaggio("Prodotto non disponibile."),HttpStatus.BAD_REQUEST);
+        }catch (PrezzoCambiatoException e){
+            return new ResponseEntity(new Messaggio("Il prezzo del prodotto è cambiato."), HttpStatus.BAD_REQUEST);
         }
     }
 

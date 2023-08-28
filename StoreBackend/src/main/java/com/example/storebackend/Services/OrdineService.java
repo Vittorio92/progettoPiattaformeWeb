@@ -1,9 +1,7 @@
 package com.example.storebackend.Services;
 
 import com.example.storebackend.Entities.*;
-import com.example.storebackend.Repositories.OrdineRepository;
-import com.example.storebackend.Repositories.ProdottoInCarrelloRepository;
-import com.example.storebackend.Repositories.UtenteRepository;
+import com.example.storebackend.Repositories.*;
 import com.example.storebackend.Support.Exceptions.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -25,6 +23,12 @@ public class OrdineService {
 
     @Autowired
     private UtenteRepository utenteRepository;
+
+    @Autowired
+    private ProdottoRepository prodottoRepository;
+
+    @Autowired
+    private IndirizzoRepository indirizzoRepository;
 
     @Autowired
     private ProdottoInCarrelloRepository prodottoInCarrelloRepository;
@@ -78,19 +82,45 @@ public class OrdineService {
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS, isolation = Isolation.READ_COMMITTED)
     public List<Ordine> findAll(){return ordineRepository.findAll();}
 
-    @Transactional(isolation = Isolation.READ_COMMITTED, rollbackFor = ProdottoEsauritoException.class)
-    public Ordine effettuaOrdine(String email, Indirizzo indirizzoSpedizione) throws ProdottoEsauritoException, CarrelloVuotoException,UtenteInesistenteException, ProdottoInesistenteException{
+    @Transactional(isolation = Isolation.READ_COMMITTED, rollbackFor = {ProdottoEsauritoException.class, PrezzoCambiatoException.class } )
+    public Ordine effettuaOrdine(String email, Indirizzo indirizzoSpedizione) throws ProdottoEsauritoException, CarrelloVuotoException,UtenteInesistenteException, ProdottoInesistenteException, PrezzoCambiatoException{
+        if(!utenteRepository.existsByEmail(email))
+            throw new UtenteInesistenteException();
         Utente u = utenteRepository.findByEmail(email);
+
+        Indirizzo spedizione=indirizzoSpedizione;
+        boolean esiste=false;
+        List<Indirizzo> indirizziUtente = indirizzoRepository.findAllByUtente(u);
+        for(Indirizzo i: indirizziUtente)
+            if(i.equals(indirizzoSpedizione)) {
+                spedizione=i;
+                esiste = true;
+                break;
+            }
+
+        if(!esiste){
+            spedizione.setUtente(u);
+            indirizzoRepository.save(spedizione);
+        }
 
         LinkedList<ProdottoInCarrello> prodotti=new LinkedList<>();
         Ordine ordine=new Ordine();
 
-        for( ProdottoInCarrello pic: u.getCarrello()){
+        List<ProdottoInCarrello> carrelloProdottiOrdine=u.getCarrello();
+        if(carrelloProdottiOrdine.size()<=0)
+            throw new CarrelloVuotoException();
+
+        for( ProdottoInCarrello pic: carrelloProdottiOrdine){
+            if(!prodottoRepository.existsById(pic.getProdotto().getId()))
+                throw new ProdottoInesistenteException();
             int nuovaQnt = pic.getProdotto().getQnt()-pic.getQnt();
             if(nuovaQnt<0)
                 //non posso effettuare l'acquisto poichè non ho abbastanza prodotti
                 throw new ProdottoEsauritoException();
             pic.getProdotto().setQnt(nuovaQnt);
+            if(pic.getPrezzo() != pic.getProdotto().getPrezzo())
+                throw new PrezzoCambiatoException();
+
 
             //creo il prodotto che verrà mostrato nell'acquisto
             ProdottoInCarrello newpic = new ProdottoInCarrello(pic.getProdotto(), pic.getQnt(), pic.getPrezzo(), pic.getUtente());
@@ -105,8 +135,9 @@ public class OrdineService {
         ordineRepository.save(ordine);
         entityManager.refresh(ordine);
         ordine.setAcquirente(u);
+        ordine.setData(new Date(System.currentTimeMillis()));
         ordine.setCarrello(prodotti);
-        ordine.setSpedizione(indirizzoSpedizione);
+        ordine.setSpedizione(spedizione);
         entityManager.merge(ordine);
 
         return ordine;

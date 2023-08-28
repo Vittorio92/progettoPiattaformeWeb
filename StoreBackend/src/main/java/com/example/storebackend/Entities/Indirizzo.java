@@ -3,6 +3,8 @@ package com.example.storebackend.Entities;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.Objects;
+
 @Entity
 @Data
 @Table(name = "indirizzo", schema = "progettostoredb")
@@ -39,4 +41,13 @@ public class Indirizzo {
     public Indirizzo(){
 
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Indirizzo indirizzo = (Indirizzo) o;
+        return numeroCivico == indirizzo.numeroCivico && cap == indirizzo.cap && Objects.equals(citta, indirizzo.citta) && Objects.equals(via, indirizzo.via);
+    }
+
 }
