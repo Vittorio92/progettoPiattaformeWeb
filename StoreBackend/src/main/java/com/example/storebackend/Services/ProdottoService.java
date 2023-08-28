@@ -45,6 +45,14 @@ public class ProdottoService {
         return prodottoRepository.findByNomeAndSquadraAndTipologia(nome,squadra,tipologia);
     }
 
+    @Transactional(readOnly = true, propagation = Propagation.SUPPORTS, isolation = Isolation.READ_COMMITTED)
+    public Prodotto getProdottoById(int id) throws ProdottoInesistenteException{
+        if(!prodottoRepository.existsById(id))
+            throw new ProdottoInesistenteException();
+        Prodotto prodotto = prodottoRepository.findById(id);
+        return prodotto;
+    }
+
     @Transactional(propagation = Propagation.REQUIRES_NEW, isolation = Isolation.READ_COMMITTED)
     public Prodotto registraProdotto(Prodotto p) throws ProdottoEsistenteException {
         if (prodottoRepository.existsByNomeAndSquadraAndTipologia(p.getNome(), p.getSquadra(),p.getTipologia())){
@@ -57,10 +65,8 @@ public class ProdottoService {
     }
 
     @Transactional(readOnly = true,propagation = Propagation.SUPPORTS, isolation = Isolation.READ_COMMITTED)
-    public List<Prodotto> ricercaPerSquadra(String squadra) throws NessunProdottoException {
+    public List<Prodotto> ricercaPerSquadra(String squadra)  {
         List<Prodotto> risultato=prodottoRepository.findBySquadra(squadra);
-        if(risultato.size()==0)
-            throw new NessunProdottoException();
         return risultato;
     }
 
@@ -137,17 +143,20 @@ public class ProdottoService {
     }
 
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS, isolation = Isolation.READ_COMMITTED)
-    public List<Prodotto> ricercaPerTipologia(String t) throws NessunProdottoException{
+    public List<Prodotto> ricercaPerTipologia(String t){
         Tipologia tipologia;
         try {
             tipologia=Tipologia.valueOf(t);
             List<Prodotto> risultato=prodottoRepository.findByTipologia(tipologia);
-            if(risultato.size()==0)
-                throw new NessunProdottoException();
             return risultato;
         }catch (IllegalArgumentException iae){
             return new LinkedList<>();
         }
+    }
+
+    @Transactional(readOnly = true, propagation = Propagation.SUPPORTS, isolation = Isolation.READ_COMMITTED)
+    public List<Prodotto> getAll(){
+        return prodottoRepository.findAll();
     }
 
 

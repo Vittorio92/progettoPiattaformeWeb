@@ -51,17 +51,17 @@ public class IndirizzoService {
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW, isolation = Isolation.READ_COMMITTED)
-    public Indirizzo registraIndirizzo(String citta, String via, int cap, int numeroC, int idUtente) throws UtenteInesistenteException, IndirizzoEsistenteException {
-        //verifico l'esistenza dell'utente
+    public Indirizzo registraIndirizzo(Indirizzo indirizzo, int idUtente) throws UtenteInesistenteException, IndirizzoEsistenteException {
+        //verifico l'esistenza dell'utente che registra l'indirizzo
         if(utenteRepository.existsById(idUtente))
             throw new UtenteInesistenteException();
         Utente u=utenteRepository.findById(idUtente);
 
         //verifico l'unicità dell'indirizzo
-        if(indirizzoRepository.existsByCapAndViaAndNumeroCivico(cap, via, numeroC))
+        if(indirizzoRepository.existsByCapAndViaAndNumeroCivico(indirizzo.getCap(), indirizzo.getVia(), indirizzo.getNumeroCivico()))
             throw new IndirizzoEsistenteException();
 
-        Indirizzo nuovo=new Indirizzo(citta,via,numeroC,cap);
+        Indirizzo nuovo=indirizzo;
         nuovo.setUtente(u);
 
         //salvo il nuovo indirizzo
@@ -84,10 +84,10 @@ public class IndirizzoService {
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW, isolation = Isolation.READ_COMMITTED)
-    public void eliminaIndirizzo(Indirizzo indirizzo) throws IndirizzoInesistenteException{
-        if(!indirizzoRepository.existsById(indirizzo.getId()))
+    public void eliminaIndirizzo(int id) throws IndirizzoInesistenteException{
+        if(!indirizzoRepository.existsById(id))
             throw new IndirizzoInesistenteException();
-        indirizzoRepository.deleteById(indirizzo.getId());
+        indirizzoRepository.deleteById(id);
 
     }
 }

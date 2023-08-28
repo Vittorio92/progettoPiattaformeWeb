@@ -14,20 +14,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 
+@CrossOrigin
 @RestController
 @RequestMapping("/utente")
 public class UtenteController {
     @Autowired
     UtenteService utenteService;
-
-    @Autowired
-    OrdineService ordineService;
-
-    @Autowired
-    ProdottoInCarrelloService prodottoInCarrelloService;
 
     @GetMapping("/ricerca_utente_email")
     public ResponseEntity<Utente> ricercaUtente(@RequestParam(value="email") String email){
@@ -42,7 +38,7 @@ public class UtenteController {
     }
 
     @PostMapping("/crea_utente")
-    public ResponseEntity<?> registraUtente(@RequestBody @Validated Utente utente){
+    public ResponseEntity<?> registraUtente(@RequestBody @Valid Utente utente){
         try{
             Utente nuovo= utenteService.registraUtente(utente);
             return new ResponseEntity<>(nuovo, HttpStatus.OK);

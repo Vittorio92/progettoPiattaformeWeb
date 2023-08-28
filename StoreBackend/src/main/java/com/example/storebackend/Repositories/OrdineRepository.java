@@ -35,8 +35,8 @@ public interface OrdineRepository extends JpaRepository<Ordine, Integer> {
 
     @Query("SELECT o "+
             "FROM Ordine o "+
-            "WHERE O.data >= :inizio AND o.data <= :fine AND o.acquirente=: acquirente"
+            "WHERE o.data >= :inizio AND o.data <= :fine AND o.acquirente= :acq"
     )
-    List<Ordine> findInPeriodAcquirente(@Param(value = "inizio")Date inizio, @Param(value = "fine")Date fine, @Param(value = "acquirente")Utente acquirente);
+    List<Ordine> findInPeriodAcquirente(@Param(value = "inizio")Date inizio, @Param(value = "fine")Date fine, @Param(value = "acq")Utente u);
 
 }

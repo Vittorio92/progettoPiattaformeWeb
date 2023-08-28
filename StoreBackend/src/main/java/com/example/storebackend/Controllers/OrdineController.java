@@ -12,8 +12,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/ordine")
 public class OrdineController {
@@ -21,7 +23,7 @@ public class OrdineController {
     OrdineService ordineService;
 
     @PostMapping("/addOrdine")
-    public ResponseEntity<Ordine> effettuaOridne(@RequestParam(value = "email")String email, @RequestBody @Validated Indirizzo spedizione) {
+    public ResponseEntity<Ordine> effettuaOridne(@RequestParam(value = "email")String email, @RequestBody @Valid Indirizzo spedizione) {
         try {
             return new ResponseEntity<>(ordineService.effettuaOrdine(email, spedizione), HttpStatus.OK);
         } catch (CarrelloVuotoException e) {
