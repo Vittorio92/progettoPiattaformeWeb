@@ -28,7 +28,7 @@ public class ProdottoInCarrelloController {
     @Autowired
     private ProdottoService prodottoService;
 
-    @GetMapping("/getcarrello")
+    @GetMapping("/get_carrello")
     public ResponseEntity<?> getCarrello(@RequestParam(value="email",required=true) String email){
         try{
             List<ProdottoInCarrello> ris = prodottoInCarrelloService.getCarrello(email);
@@ -45,7 +45,7 @@ public class ProdottoInCarrelloController {
             for(ProdottoInCarrello pic:lista)
                 if(pic.getId()==codice){
                     prodottoInCarrelloService.diminuisciQuantitaProdottoInCarrello(email,pic);
-                    return new ResponseEntity<>(new Messaggio("Maglia eliminata dal carrello."),HttpStatus.OK);
+                    return new ResponseEntity<>(new Messaggio("Prodotto eliminata dal carrello."),HttpStatus.OK);
                 }
         } catch (UtenteInesistenteException e) {
             return new ResponseEntity<>(new Messaggio("Utente Inesistente"), HttpStatus.BAD_REQUEST);
@@ -71,7 +71,7 @@ public class ProdottoInCarrelloController {
         return new ResponseEntity<>(new Messaggio("Prodotto nel carrello non eliminato"),HttpStatus.BAD_REQUEST);
     }
 
-    @PutMapping("/addProdotto")
+    @PutMapping("/add_prodotto")
     public ResponseEntity<Messaggio> addProdotto(@RequestParam(value="email") String email, @RequestParam(value="codice") int codice, @RequestParam(value="qnt") int qnt){
         try{
             Prodotto p = prodottoService.getProdottoById(codice);
