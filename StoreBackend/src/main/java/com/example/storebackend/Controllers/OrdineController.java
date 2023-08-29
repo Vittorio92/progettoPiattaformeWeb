@@ -22,7 +22,7 @@ public class OrdineController {
     @Autowired
     OrdineService ordineService;
 
-    @PostMapping("/addOrdine")
+    @PostMapping("/add_ordine")
     public ResponseEntity<Ordine> effettuaOridne(@RequestParam(value = "email")String email, @RequestBody @Valid Indirizzo spedizione) {
         try {
             return new ResponseEntity<>(ordineService.effettuaOrdine(email, spedizione), HttpStatus.OK);
@@ -41,7 +41,7 @@ public class OrdineController {
 
 
 
-    @GetMapping("/getAcquisti")
+    @GetMapping("/get_acquisti")
     public ResponseEntity<List<Ordine>> getOrdini(@RequestParam(value = "email") String email) {
         try {
             return new ResponseEntity<>(ordineService.getOrdiniUtente(email), HttpStatus.OK);

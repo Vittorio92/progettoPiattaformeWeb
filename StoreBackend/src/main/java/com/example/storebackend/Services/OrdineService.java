@@ -105,6 +105,7 @@ public class OrdineService {
 
         LinkedList<ProdottoInCarrello> prodotti=new LinkedList<>();
         Ordine ordine=new Ordine();
+        ordine.setCarrello(prodotti);
 
         List<ProdottoInCarrello> carrelloProdottiOrdine=u.getCarrello();
         if(carrelloProdottiOrdine.size()<=0)
@@ -117,7 +118,6 @@ public class OrdineService {
             if(nuovaQnt<0)
                 //non posso effettuare l'acquisto poichè non ho abbastanza prodotti
                 throw new ProdottoEsauritoException();
-            pic.getProdotto().setQnt(nuovaQnt);
             if(pic.getPrezzo() != pic.getProdotto().getPrezzo())
                 throw new PrezzoCambiatoException();
 
@@ -127,18 +127,18 @@ public class OrdineService {
             //associo l'ordine al prodotto
             newpic.setOrdine(ordine);
             //aggiungo il prodotto alla lista
-            prodotti.add(newpic);
+            prodottoInCarrelloRepository.save(newpic);
+            ordine.getCarrello().add(newpic);
             //rimuovo il prodotto perchè è venduto
             prodottoInCarrelloRepository.delete(pic);
+
+            pic.getProdotto().setQnt(nuovaQnt);
         }
 
-        ordineRepository.save(ordine);
-        entityManager.refresh(ordine);
         ordine.setAcquirente(u);
         ordine.setData(new Date(System.currentTimeMillis()));
-        ordine.setCarrello(prodotti);
         ordine.setSpedizione(spedizione);
-        entityManager.merge(ordine);
+        ordineRepository.save(ordine);
 
         return ordine;
     }

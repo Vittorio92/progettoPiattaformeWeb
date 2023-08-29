@@ -16,14 +16,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
-@RequestMapping("(/carrello")
+@RequestMapping("/carrello")
 public class ProdottoInCarrelloController {
     @Autowired
     private ProdottoInCarrelloService prodottoInCarrelloService;
-
-    @Autowired
-    private UtenteService utenteService;
 
     @Autowired
     private ProdottoService prodottoService;
@@ -71,7 +69,7 @@ public class ProdottoInCarrelloController {
         return new ResponseEntity<>(new Messaggio("Prodotto nel carrello non eliminato"),HttpStatus.BAD_REQUEST);
     }
 
-    @PutMapping("/add_prodotto")
+    @PostMapping("/add_prodotto")
     public ResponseEntity<Messaggio> addProdotto(@RequestParam(value="email") String email, @RequestParam(value="codice") int codice, @RequestParam(value="qnt") int qnt){
         try{
             Prodotto p = prodottoService.getProdottoById(codice);

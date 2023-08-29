@@ -53,7 +53,7 @@ public class IndirizzoService {
     @Transactional(propagation = Propagation.REQUIRES_NEW, isolation = Isolation.READ_COMMITTED)
     public Indirizzo registraIndirizzo(Indirizzo indirizzo, int idUtente) throws UtenteInesistenteException, IndirizzoEsistenteException {
         //verifico l'esistenza dell'utente che registra l'indirizzo
-        if(utenteRepository.existsById(idUtente))
+        if(!utenteRepository.existsById(idUtente))
             throw new UtenteInesistenteException();
         Utente u=utenteRepository.findById(idUtente);
 

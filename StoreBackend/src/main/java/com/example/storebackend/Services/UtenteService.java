@@ -40,7 +40,9 @@ public class UtenteService {
     }
 
     @Transactional(readOnly = true,propagation = Propagation.SUPPORTS, isolation = Isolation.READ_COMMITTED)
-    public Utente getUtente(String email){
+    public Utente getUtente(String email) throws UtenteInesistenteException{
+        if(!utenteRepository.existsByEmail(email))
+            throw new UtenteInesistenteException();
         return utenteRepository.findByEmail(email);
     }
 

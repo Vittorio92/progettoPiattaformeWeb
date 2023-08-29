@@ -21,7 +21,6 @@ public class Prodotto {
     private String nome;
 
     @Column(name = "immagine", nullable = false, length = 500)
-    @JsonIgnore
     private String immagine;
 
     @Column(name = "qnt", nullable = false)

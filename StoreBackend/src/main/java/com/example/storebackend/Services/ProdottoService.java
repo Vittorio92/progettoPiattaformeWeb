@@ -127,7 +127,8 @@ public class ProdottoService {
 
         Tipologia t=null;
         try {
-            t=Tipologia.valueOf(tipologia);
+            if(tipologia!=null)
+                t=Tipologia.valueOf(tipologia);
         }catch (IllegalArgumentException iae){
 
         }

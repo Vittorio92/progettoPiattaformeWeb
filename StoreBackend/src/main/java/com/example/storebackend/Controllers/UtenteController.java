@@ -27,8 +27,13 @@ public class UtenteController {
 
     @GetMapping("/ricerca_utente_email")
     public ResponseEntity<Utente> ricercaUtente(@RequestParam(value="email") String email){
-        Utente ris = utenteService.getUtente(email);
-        return new ResponseEntity<>(ris, HttpStatus.OK);
+        try {
+            Utente ris = utenteService.getUtente(email);
+            return new ResponseEntity<>(ris, HttpStatus.OK);
+        }catch (UtenteInesistenteException e){
+            return new ResponseEntity(new Messaggio("L'utente indicato non esiste"), HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @GetMapping("/tutti_gli_utenti")
