@@ -4,7 +4,6 @@ import com.example.storebackend.Entities.Prodotto;
 import com.example.storebackend.Entities.ProdottoInCarrello;
 import com.example.storebackend.Services.ProdottoInCarrelloService;
 import com.example.storebackend.Services.ProdottoService;
-import com.example.storebackend.Services.UtenteService;
 import com.example.storebackend.Support.Exceptions.ProdottoEsauritoException;
 import com.example.storebackend.Support.Exceptions.ProdottoInesistenteException;
 import com.example.storebackend.Support.Exceptions.UtenteInesistenteException;

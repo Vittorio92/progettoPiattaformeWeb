@@ -2,15 +2,12 @@ package com.example.storebackend.Controllers;
 
 import com.example.storebackend.Entities.Prodotto;
 import com.example.storebackend.Services.ProdottoService;
-import com.example.storebackend.Support.Exceptions.NessunProdottoException;
 import com.example.storebackend.Support.Exceptions.ProdottoEsistenteException;
 import com.example.storebackend.Support.Exceptions.ProdottoInesistenteException;
 import com.example.storebackend.Support.Messaggio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;

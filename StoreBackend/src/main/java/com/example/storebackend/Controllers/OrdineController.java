@@ -3,13 +3,11 @@ package com.example.storebackend.Controllers;
 import com.example.storebackend.Entities.Indirizzo;
 import com.example.storebackend.Entities.Ordine;
 import com.example.storebackend.Services.OrdineService;
-import com.example.storebackend.Services.ProdottoService;
 import com.example.storebackend.Support.Exceptions.*;
 import com.example.storebackend.Support.Messaggio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;

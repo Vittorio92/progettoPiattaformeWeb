@@ -28,7 +28,7 @@ public class Utente {
     @Column(name="email",nullable=false)
     private String email;
 
-    @Column(name = "dataNascita", nullable = false)
+    @Column(name = "dataNascita")
     private String dataNascita;
 
     @OneToMany(mappedBy = "utente", cascade = {CascadeType.MERGE, CascadeType.REMOVE})
@@ -44,6 +44,12 @@ public class Utente {
         this.cognome=cognome;
         this.email=email;
         this.dataNascita=dataNascita;
+    }
+
+    public Utente(String nome, String cognome, String email){
+        this.nome=nome;
+        this.cognome=cognome;
+        this.email=email;
     }
 
     public Utente(){

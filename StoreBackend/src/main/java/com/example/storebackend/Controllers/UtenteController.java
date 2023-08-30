@@ -1,8 +1,6 @@
 package com.example.storebackend.Controllers;
 
 import com.example.storebackend.Entities.Utente;
-import com.example.storebackend.Services.OrdineService;
-import com.example.storebackend.Services.ProdottoInCarrelloService;
 import com.example.storebackend.Services.UtenteService;
 import com.example.storebackend.Support.Exceptions.OrdineInesistenteException;
 import com.example.storebackend.Support.Exceptions.UtenteEsistenteException;
@@ -11,7 +9,6 @@ import com.example.storebackend.Support.Messaggio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
