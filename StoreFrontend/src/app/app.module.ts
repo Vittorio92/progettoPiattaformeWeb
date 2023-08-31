@@ -1,18 +1,49 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { KeycloakService, KeycloakAngularModule } from 'keycloak-angular';
+import { OAuthModule } from 'angular-oauth2-oidc';
+import { CarrelloComponent } from './components/carrello/carrello.component';
+
+function initializeKeycloak(keycloak: KeycloakService):()=> Promise<boolean> {
+  return () =>
+    keycloak.init({
+      config: {
+        url: 'http://localhost:8080',
+        realm: 'Store',
+        clientId: 'StoreClient'
+      },
+      initOptions:{
+          checkLoginIframe: true,
+          checkLoginIframeInterval: 25
+      }
+    });
+}
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CarrelloComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    OAuthModule.forRoot({
+      resourceServer: {
+          allowedUrls: ['http://localhost:8081/'],
+          sendAccessToken: true
+      }
+  }),
+  KeycloakAngularModule
   ],
-  providers: [],
+  providers: [ {
+    provide: APP_INITIALIZER,
+    useFactory: initializeKeycloak,
+    multi: true,
+    deps: [KeycloakService],
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
