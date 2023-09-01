@@ -3,9 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FormsModule } from '@angular/forms';
 import { KeycloakService, KeycloakAngularModule } from 'keycloak-angular';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { CarrelloComponent } from './components/carrello/carrello.component';
+import { HttpClientModule } from '@angular/common/http';
+import { BarraRicercaComponent } from './components/barra-ricerca/barra-ricerca.component';
 
 function initializeKeycloak(keycloak: KeycloakService):()=> Promise<boolean> {
   return () =>
@@ -25,7 +28,8 @@ function initializeKeycloak(keycloak: KeycloakService):()=> Promise<boolean> {
 @NgModule({
   declarations: [
     AppComponent,
-    CarrelloComponent
+    CarrelloComponent,
+    BarraRicercaComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +40,9 @@ function initializeKeycloak(keycloak: KeycloakService):()=> Promise<boolean> {
           sendAccessToken: true
       }
   }),
-  KeycloakAngularModule
+  KeycloakAngularModule,
+  HttpClientModule,
+  FormsModule
   ],
   providers: [ {
     provide: APP_INITIALIZER,

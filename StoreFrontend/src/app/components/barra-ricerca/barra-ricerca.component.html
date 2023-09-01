@@ -1,0 +1,76 @@
+<div class="ricerca">
+    <div class="container_1">
+        <div class="search_box">
+            <input style="font-size: 20px;" #nome type="text" class="input_search"
+                placeholder="Inserire nome del prodotto...">
+        </div>
+    </div>
+    <div class="container_2">
+        <div class="search_box_artista">
+            <input style="font-size: 20px;" #artista type="text" class="input_search"
+                placeholder="Inserire nome della squadra...">
+        </div>
+    </div>
+<div class="categorie">
+    <label class="rad-label">
+        <input type="radio" class="rad-input" name="rad" [(ngModel)]="tipologia" value="TUTTE">
+        <div class="rad-design"></div>
+        <div class="rad-text">TUTTE</div>
+    </label>
+    <label class="rad-label">
+        <input type="radio" class="rad-input" name="rad" [(ngModel)]="tipologia"  value="MAGLIA">
+        <div class="rad-design"></div>
+        <div class="rad-text">MAGLIA</div>
+    </label>
+    <label class="rad-label">
+        <input type="radio" class="rad-input" name="rad" [(ngModel)]="tipologia"  value="PANTALONCINO">
+        <div class="rad-design"></div>
+        <div class="rad-text">PANTALONCINO</div>
+    </label>
+    <label class="rad-label">
+        <input  type="radio" class="rad-input" name="rad" [(ngModel)]="tipologia"  value="COMPLETO">
+        <div class="rad-design"></div>
+        <div class="rad-text">COMPLETO</div>
+    </label>
+</div>
+<button class="btn_cerca" (click)="cerca(nome.value, artista.value, tipologia)">Cerca</button>
+</div>
+
+<div class="risultato">
+<ul *ngFor="let i of risultato" list-style-type="none">
+    <li>
+        <div id="container">
+            <div class="product-details">
+                <h1>{{i.nome}}</h1>
+                <div class="control">
+                    <button (click)="aggiungiAlCarrello(i.id, num[risultato.indexOf(i)])" class="btn">
+                        <span class="price">{{i.prezzo}} €</span>
+                        <span class="buy">Aggiungi al carrello</span>
+                    </button>
+                    <br>
+                    <div class="plus-min">
+                        <button class="plus" (click)="aumenta(i)">
+                            +
+                        </button>
+                        <p clas="numero"><b style="color: black; position: relative; top:35px">{{num[risultato.indexOf(i)]}}</b></p>
+                        <button class="minus" (click)="diminuisci(i)">
+                            -
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-image">
+                <img src="{{i.immagine}}">
+                <div class="info">
+                    <h2> Descrizione</h2>
+                    <ul class="informazioni" style="position: relative; left: 30px">
+                        <li><strong>Artista: </strong>{{i.squadra}} </li>
+                        <li><strong>Quantità:</strong>{{i.qnt}} </li>
+                        <li><strong>Tipologia: </strong>{{i.tipologia}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </li>
+</ul>
+</div>

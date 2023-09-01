@@ -9,10 +9,21 @@ import { KeycloakService } from 'keycloak-angular';
 })
 export class AppComponent {
   title = 'StoreFrontend';
+  autenticato: boolean = this.auth.isauthenticated();
 
-  constructor(private auth: KeycloakService){}
+  constructor(private auth: AuthService){}
 
   login(){
     this.auth.login();
+  }
+
+  nome(){
+    console.log(this.auth.getInfoAboutUser());
+    console.log(this.auth.getEmail());
+    console.log(this.auth.isauthenticated());
+  }
+
+  logout(){
+    this.auth.logoff();
   }
 }

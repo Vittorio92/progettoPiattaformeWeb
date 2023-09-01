@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { OAuthService, AuthConfig, JwksValidationHandler } from 'angular-oauth2-oidc';
+import { OAuthService, AuthConfig } from 'angular-oauth2-oidc';
 import jwtDecode from 'jwt-decode';
 import { User } from './user';
 import { jsonToken } from './jsonToken';
+import { JwksValidationHandler } from 'angular-oauth2-oidc-jwks';
 
 
 @Injectable({
@@ -17,7 +18,7 @@ export class AuthService {
   authConfig: AuthConfig = {
     issuer: 'http://localhost:8080/realms/Store',
     redirectUri: window.location.origin,
-    clientId: 'StoreCLient',
+    clientId: 'StoreClient',
     scope: 'openid',
     responseType: 'code',
     // at_hash is not present in JWT token
@@ -50,7 +51,17 @@ export class AuthService {
 
   public getEmail(){
     const currUser:User= <User> this.oauthService.getIdentityClaims();
+    return currUser.email;
+  }
+
+  public getUsername(){
+    const currUser:User= <User> this.oauthService.getIdentityClaims();
     return currUser.preferred_username;
+  }
+
+  public getNomeECognome(){
+    const currUser:User= <User> this.oauthService.getIdentityClaims();
+    return currUser.family_name + currUser.given_name;
   }
 
   public getInfoAboutUser():jsonToken{
