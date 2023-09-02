@@ -9,6 +9,8 @@ import { OAuthModule } from 'angular-oauth2-oidc';
 import { CarrelloComponent } from './components/carrello/carrello.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BarraRicercaComponent } from './components/barra-ricerca/barra-ricerca.component';
+import { AcquistiComponent } from './acquisti/acquisti.component';
+
 
 function initializeKeycloak(keycloak: KeycloakService):()=> Promise<boolean> {
   return () =>
@@ -29,7 +31,8 @@ function initializeKeycloak(keycloak: KeycloakService):()=> Promise<boolean> {
   declarations: [
     AppComponent,
     CarrelloComponent,
-    BarraRicercaComponent
+    BarraRicercaComponent,
+    AcquistiComponent,
   ],
   imports: [
     BrowserModule,
