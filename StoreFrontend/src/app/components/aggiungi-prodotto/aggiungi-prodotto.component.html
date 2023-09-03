@@ -1,0 +1,36 @@
+<div class="form">
+    <div class="title">Aggiungi nuovo prodotto</div>
+    <div class="subtitle">Compila tutti i campi Obbligatori (*)</div>
+    <div class="input-container ic1">
+        <input #nome id="firstname" class="input" type="text" placeholder=" " />
+        <div class="cut"></div>
+        <label for="nome" class="placeholder">* Nome prodotto</label>
+    </div>
+    <div class="input-container ic2">
+        <input #artista id="lastname" class="input" type="text" placeholder=" " />
+        <div class="cut"></div>
+        <label for="squadra" class="placeholder">* Squadra</label>
+    </div>
+    <div class="input-container ic2">
+        <input #prezzo  class="input" type="number" placeholder=" " (keypress)="numberOnly($event)" />
+        <div class="cut cut-short"></div>
+        <label for="prezzo" class="placeholder">* Prezzo</label>
+    </div>
+    <div class="input-container ic2">
+        <input #quantita  class="input" type="number" placeholder=" " (keypress)="numberOnly($event)" />
+        <div class="cut cut-short"></div>
+        <label for="quantita" class="placeholder">* Quantità</label>
+    </div>
+    <div class="input-container ic2">
+        <input #tipologia  class="input" type="text" placeholder=" " />
+        <div class="cut cut-short"></div>
+        <label for="tipologia" class="placeholder">Tipologia</label>
+    </div>
+    <div class="input-container ic2">
+        <input #link  class="input" type="text" placeholder=" " />
+        <div class="cut cut-short"></div>
+        <label for="immagine" class="placeholder">Link immagine</label>
+    </div>
+    <button (click)="crea(nome.value, artista.value, prezzo.value,
+    quantita.value, tipologia.value, link.value)" type="text" class="submit">Aggiungi</button>
+</div>

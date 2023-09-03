@@ -37,7 +37,7 @@ export class AuthService {
     this.oauthService.initLoginFlow();
   }
 
-  public logoff() {
+  public logout() {
     this.oauthService.logOut();
   }
 

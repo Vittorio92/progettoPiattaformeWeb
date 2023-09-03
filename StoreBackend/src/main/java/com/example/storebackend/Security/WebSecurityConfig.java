@@ -29,7 +29,7 @@ public class WebSecurityConfig{
                 .requestMatchers("/ordine/**").permitAll()
                 .requestMatchers("/carrello/**").permitAll()
                 .requestMatchers("/prodotto/**").permitAll()
-                .requestMatchers("/indirizzo/**").hasRole(USER)
+                .requestMatchers("/indirizzo/**").permitAll()
                 .anyRequest().permitAll();
         http.oauth2ResourceServer()
                 .jwt()

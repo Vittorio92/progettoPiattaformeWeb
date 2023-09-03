@@ -23,7 +23,6 @@ public class ProdottoInCarrello {
 
     @ManyToOne(cascade = CascadeType.MERGE, optional = false)
     @JoinColumn(name = "prodotto", referencedColumnName = "id")
-    @JsonIgnore
     private Prodotto prodotto;
 
 

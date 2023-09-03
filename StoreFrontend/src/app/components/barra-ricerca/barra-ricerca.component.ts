@@ -71,8 +71,8 @@ cerca(nome: string, squadra: string, tipo: string){
     }
     else{
       let mail = this.auth.getEmail()
-      this.http.post<ProdottoInCarrello>("http://localhost:8081/carrello/add_prodotto?mail="+mail+"&codice="+idProdotto+"&qnt="+quantita, null).subscribe(ris =>{
-        alert("Opera aggiunta al carrello !")
+      this.http.post<ProdottoInCarrello>("http://localhost:8081/carrello/add_prodotto?email="+mail+"&codice="+idProdotto+"&qnt="+quantita, null).subscribe(ris =>{
+        alert("Prodotto aggiunto al carrello correttamente !")
       });
     }
   }

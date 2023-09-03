@@ -1,9 +1,60 @@
-<h1>Benvenuto</h1>
-<button (click)="login()">Login </button>
+<header>
+    <h1 class="title"> Store Calcio </h1>
 
-<button (click)="nome()">Show</button>
-<h2>{{autenticato}}</h2>
+    <!--Barra di navigazione-->
+    <nav>
+        <div class="container">
+            <div class="navigazione">
+                <div class="barra-di-navigazione" style="margin-inline:30px ;">
+                    <ul class="fill">
+                        <li *ngIf="auth.isauthenticated()">
+                            <p>Benvenuto {{auth.getNomeECognome()}}</p>
+                        </li>
+                        <li>
+                            <button class="button" (click)="mostra_prodotti()">Negozio prodotti</button>
+                        </li>
+                        <li class="circle">
+                            <button class="search-button" (click)="mostra_barraRicerca()">
+                                <img class="ricerca" src="/assets/immagini/lente.jpg" alt="Ricerca" width="30px"
+                                    height="30px">
+                            </button>
+                        </li>
+                        <li class="circle">
+                            <a href="#Carrello" target="_self">
+                                <button class="cart-button" (click)="mostra_carrello()">
+                                    <img class="carrello" src="/assets/immagini/carrello.jpeg" width="40px"
+                                        height="40px">
+                                </button>
+                            </a>
+                        </li>
+                        <li class="circle">
+                            <button *ngIf="!auth.isauthenticated()" class="log-in-button" (click)="login()">
+                                <img class="log-in" src="/assets/immagini/login.png" alt="Log-in" width="30px"
+                                    height="30px">
+                            </button>
+                        </li>
+                        <li *ngIf="auth.isauthenticated()">
+                            <button class="log-out-button" (click)="logout()">
+                                Log-Out
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
 
-<button (click)="logout()">Logout</button>
+<section>
+    <div class="container-fluid">
+        <div class="riga">
+            <div class="colonna">
+                <app-barra-ricerca *ngIf="barraRicerca_visibile"></app-barra-ricerca>
+                <app-negozio-prodotti *ngIf="negozio_visibile"></app-negozio-prodotti>
+                <app-carrello *ngIf="carrello_visibile"></app-carrello>
+            </div>
+        </div>
+    </div>
+</section>
 
 <router-outlet></router-outlet>

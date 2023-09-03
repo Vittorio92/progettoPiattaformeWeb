@@ -9,21 +9,53 @@ import { KeycloakService } from 'keycloak-angular';
 })
 export class AppComponent {
   title = 'StoreFrontend';
-  autenticato: boolean = this.auth.isauthenticated();
+  utente!: any;
+  verificato: boolean = false;
 
-  constructor(private auth: AuthService){}
+  barraRicerca_visibile: boolean = false
+  carrello_visibile: boolean = false
+  negozio_visibile = false;
 
-  login(){
+
+
+  constructor(public auth: AuthService){}
+
+  public isAuthenticated(): boolean {
+    return this.auth.isauthenticated();
+  }
+
+  login() {
+    if (this.auth.isauthenticated()) {
+      alert("Hai già effettuato l'accesso come: " + this.auth.getNomeECognome);
+    }
     this.auth.login();
   }
 
-  nome(){
-    console.log(this.auth.getInfoAboutUser());
-    console.log(this.auth.getEmail());
-    console.log(this.auth.isauthenticated());
+  logout(){
+    this.auth.logout();
   }
 
-  logout(){
-    this.auth.logoff();
+  mostra_barraRicerca(): void {
+    this.barraRicerca_visibile = true
+    this.carrello_visibile = false
+    this.negozio_visibile = false
   }
+
+  mostra_carrello(): void {
+    if (!this.isAuthenticated()) {
+      alert("Effettuare il log-in per visualizzare il carrello")
+    }
+    else {
+      this.barraRicerca_visibile = false
+      this.carrello_visibile = true
+      this.negozio_visibile = false
+    }
+  }
+
+  mostra_prodotti(): void {
+    this.barraRicerca_visibile = false
+    this.negozio_visibile = true
+    this.carrello_visibile = false
+  }
+
 }

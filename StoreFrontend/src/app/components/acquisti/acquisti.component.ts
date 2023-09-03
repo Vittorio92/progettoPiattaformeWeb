@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth/auth.service';
-import { Ordine } from '../models/ordine.models';
+import { AuthService } from '../../auth/auth.service';
+import { Ordine } from '../../models/ordine.models';
 
 
 @Component({
@@ -19,7 +19,7 @@ export class AcquistiComponent implements OnInit {
   }
 
   storico(): void{
-    this.http.get<Ordine[]>("http://localhost:8081/ordine/getAcquisti?email="+this.auth.getEmail()).subscribe(ris =>{
+    this.http.get<Ordine[]>("http://localhost:8081/ordine/get_acquisti?email="+this.auth.getEmail()).subscribe(ris =>{
       this.storicoAcquisti = ris;
     })
   }

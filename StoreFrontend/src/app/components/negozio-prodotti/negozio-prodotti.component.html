@@ -1,0 +1,39 @@
+<ul *ngFor="let i of prodotti" list-style-type="none">
+	<li>
+		<div id="container">
+			<div class="product-details">
+				<h1>{{i.nome}}</h1>
+				<div class="control">
+					<button class="btn" (click)="aggiungiAlCarrello(i.id, num[prodotti.indexOf(i)])">
+						<span class="price">{{i.prezzo}} €</span>
+						<span class="buy">Aggiungi al carrello</span>
+					</button>
+					<br>
+					<div class="plus-min">
+						<button class="plus" (click)="aumenta(i)">
+							+
+						</button>
+						<p clas="num"><b>{{num[prodotti.indexOf(i)]}}</b></p>
+						<button class="minus" (click)="diminuisci(i)">
+							-
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="product-image">
+				<img src="/assets/immagini/{{i.immagine}}">
+				<div class="info">
+					<h2> Descrizione</h2>
+					<ul>
+						<li><strong>Squadra: </strong>{{i.squadra}} </li>
+						<li><strong>Quantità:</strong>{{i.qnt}} </li>
+						<li><strong>Tipologia: </strong>{{i.tipologia}}</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</li>
+</ul>
+<br>
+<br>
+<br>

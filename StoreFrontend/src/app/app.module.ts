@@ -9,7 +9,9 @@ import { OAuthModule } from 'angular-oauth2-oidc';
 import { CarrelloComponent } from './components/carrello/carrello.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BarraRicercaComponent } from './components/barra-ricerca/barra-ricerca.component';
-import { AcquistiComponent } from './acquisti/acquisti.component';
+import { AcquistiComponent } from './components/acquisti/acquisti.component';
+import { NegozioProdottiComponent } from './components/negozio-prodotti/negozio-prodotti.component';
+import { AggiungiProdottoComponent } from './components/aggiungi-prodotto/aggiungi-prodotto.component';
 
 
 function initializeKeycloak(keycloak: KeycloakService):()=> Promise<boolean> {
@@ -33,6 +35,8 @@ function initializeKeycloak(keycloak: KeycloakService):()=> Promise<boolean> {
     CarrelloComponent,
     BarraRicercaComponent,
     AcquistiComponent,
+    NegozioProdottiComponent,
+    AggiungiProdottoComponent,
   ],
   imports: [
     BrowserModule,

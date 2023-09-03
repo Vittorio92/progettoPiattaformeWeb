@@ -15,7 +15,7 @@ export class CarrelloComponent implements OnInit {
     for(let i = 0; i< this.prodotti.length; i++){
       this.num[i] = 0;
     }
-   }
+  }
 
   ngOnInit(): void {
     this.mostraCarrello()
@@ -59,7 +59,7 @@ export class CarrelloComponent implements OnInit {
       alert("Il carrello è vuoto")
     }
     else{
-    this.http.put<Ordine>("http://localhost:8081/ordine/addOrdine?email="+this.auth.getEmail(), null).subscribe(ris=>{  
+    this.http.put<Ordine>("http://localhost:8081/ordine/add_ordine?email="+this.auth.getEmail(), null).subscribe(ris=>{  
     alert("Acquisto effettuato con successo")
       this.prodotti = new Array();
       
@@ -70,7 +70,7 @@ export class CarrelloComponent implements OnInit {
   storico(): void{
     this.storicoAcquisti = !this.storicoAcquisti
   }
- 
+
 
 
 }
