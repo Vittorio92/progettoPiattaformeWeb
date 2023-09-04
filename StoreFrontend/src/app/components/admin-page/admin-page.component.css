@@ -1,0 +1,540 @@
+body{
+    margin: 0 auto;
+  
+}
+
+.wrapper{
+  display: flex;
+  justify-content: space-between;
+  min-height: 100vh;
+  color: white;
+  text-align: center;
+}
+.left{
+  background-color: white;
+  width: 50%;
+
+
+}
+.right{
+  background-color: white;
+  width: 50%;
+
+}
+
+.line{
+    background-color: cadetblue;
+    position: relative;
+    width: 10px;
+    left: 20px;
+    z-index: 1;
+
+}
+ul{
+    list-style-type: none;
+}
+body {
+    background: #DFC2F2;
+        background-image: linear-gradient( to right, #ffffb3,#ffe6e6);
+        background-attachment: fixed;	
+        background-size: cover;
+        border-radius: 100%;
+        }
+    
+    #container{
+        box-shadow: 0 15px 30px 1px grey;
+        background: rgba(255, 255, 255, 0.90);
+        text-align: center;
+        border-radius: 20px;
+        overflow: hidden;
+        margin: 3em auto;
+        height: 300px;
+        width: 650px;  
+    }
+    
+    
+    
+    .product-details {
+        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        position: relative;
+        text-align: left;
+        overflow: hidden;
+        padding: 30px;
+        height: 100%;
+        float: left;
+        width: 40%;
+    
+    }
+    
+    #container .product-details h1{
+        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        color:cadetblue;
+        display: inline-block;
+        position: relative;
+        color: cadetblue;
+        margin: 0;
+        
+    }
+    
+    #container .product-details h1:before{
+        position: absolute;
+        content: '';
+        right: 0%; 
+        top: 0%;
+        transform: translate(25px, -15px);
+        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        color:cadetblue;
+        display: inline-block;
+        background: #ffe6e6;
+        border-radius: 5px;
+        font-size: 14px;
+        padding: 5px;
+        color: white;
+        margin: 0;
+        animation: chan-sh 6s ease infinite;
+    
+    }
+    
+    
+    
+    
+    #container .product-details > p {
+        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        text-align: center;
+        font-size: 18px;
+        color: #7d7d7d;
+        
+    }
+    .control{
+        position: absolute;
+        bottom: 20%;
+        left: 22.8%;
+        
+    }
+    .btn {
+    
+        transform: translateY(0px);
+        transition: 0.3s linear;
+        background:  cadetblue;
+        border-radius: 5px;
+      position: relative;
+      overflow: hidden;
+        cursor: pointer;
+        outline: none;
+        border: none;
+        color: #eee;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        
+    }
+    
+    .btn:hover{transform: translateY(-6px);
+        background: cadetblue;
+        text-align: center;
+        size: 50%;
+    }
+    
+    .btn span {
+        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        transition: transform 0.3s;
+        display: inline-block;
+      padding: 10px 20px;
+        font-size: 1.2em;
+        margin:0;
+        
+    }
+    .btn .price, .shopping-cart{
+        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        background: #333;
+        border: 0;
+        margin: 0;
+    }
+    
+    .btn .price {
+        transform: translateX(-10%); padding-right: 15px;
+        text-align: center;
+    }
+    
+    
+    .btn .buy {
+   
+        z-index: 3; font-weight: bolder;
+    }
+
+    .product-image {
+        transition: all 0.3s ease-out;
+        display: inline-block;
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+        float: right;
+        width: 45%;
+        display: inline-block;
+    }
+    
+    #container img {width: 100%;height: 100%;}
+    
+    .info {
+        background: rgba(48, 157, 176, 0.9);
+        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        transition: all 0.3s ease-out;
+        transform: translateX(-100%);
+        position: absolute;
+        line-height: 1.8;
+        text-align: left;
+        font-size: 105%;
+        cursor: no-drop;
+        color: #FFF;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 0;
+    }
+    
+    .info h2 {text-align: center}
+    .product-image:hover .info{transform: translateX(0);}
+    
+    .info ul li{transition: 0.3s ease;}
+    .info ul li:hover{transform: translateX(50px) scale(1.3);}
+    
+    .product-image:hover img {transition: all 0.3s ease-out;}
+    .product-image:hover img {transform: scale(1.2, 1.2);}
+
+    /*---------------------*/
+
+    .title{
+    text-align: center;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 500%;
+    color:white;
+    position: relative;
+    bottom: 300px;
+    
+    background-color: black;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: rgb(255, 255, 255) 0px 3px 3px;
+}
+
+
+
+p{
+    text-align: center;
+}
+ 
+.card {
+    text-align: center;
+    box-shadow: 0 10px 20px 0 cadetblue;
+    transition: 0.3s;
+    width: 40%;
+    border-radius: 10px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: cadetblue;
+  }
+  
+  .card:hover {
+    box-shadow: 20px 30px 40px 0 cadetblue;
+  }
+  
+  .containers {
+    padding: 10px 10px;
+  }
+
+  .immagine{
+    border-radius: 10px;
+ } 
+
+  
+
+  .button {
+    text-align: center;
+    position: relative;
+    left: 50%;
+    height: 80px;
+    width: 150px;
+    text-align: center;
+    background-color: cadetblue; 
+    border: none;
+    color: white;
+    padding: 15px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    background-color: white;
+    color: cadetblue;
+    border: 2px solid cadetblue; 
+    border-radius: 5px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+   
+}
+
+.button {
+    transition-duration: 0.4s;
+    box-shadow: 0 3px #999;
+  }
+  
+.button:hover {
+    
+    background-color: cadetblue; 
+    color: white;
+}
+
+.prezzo_attuale{
+    color: cadetblue;
+}
+
+.elimina{
+    color: cadetblue;
+}
+
+.si{
+    position: relative;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color:cadetblue;
+    position: relative;
+    bottom: 8px;
+    left: 30px;
+    display: inline-block;
+    padding: 3px 3px;
+    font-size: 12px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    background-color: white;
+    border: 2px solid cadetblue;
+    border-radius: 10%;
+    box-shadow: 0 3px #999;
+    width: 40px;
+    height: 40px;
+    font-size: 80%;
+   
+}
+
+.no{
+    position: relative;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color:cadetblue;
+    position: relative;
+    bottom: 8px;
+    left: 90px;
+    display: inline-block;
+    padding: 3px 3px;
+    font-size: 12px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    background-color: white;
+    border: 2px solid cadetblue;
+    border-radius: 10%;
+    box-shadow: 0 3px #999;
+    width: 40px;
+    height: 40px;
+    font-size: 80%;
+   
+}
+
+.btn{
+    position: relative;
+    left: 20px;
+    top: 5px;
+}
+
+.elimina{
+ position: relative;
+ right: 20px;   
+}
+
+.si:hover{
+    background-color: cadetblue;
+    color: #fff;
+    transition: 0.3s;
+  }
+
+.no:hover{
+    background-color: cadetblue;
+    color: #fff;
+    transition: 0.3s;
+  }
+
+.input_box{
+    border-radius: 10px;
+    position: relative;
+    left: 60px;
+    width: 100px;
+    height: 20px;
+}
+
+.conferma{
+    border-radius: 20px;
+    position: relative;
+    left: 70px;
+    background-color: #FFF;
+    border-color: cadetblue;
+    color: cadetblue;
+}
+
+.conferma:hover{
+    background-color: cadetblue;
+    color: #fff;
+    transition: 0.3s;
+}
+
+
+::-webkit-input-placeholder{
+    color: cadetblue;
+    font-size: 15px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+::placeholder{
+    color: cadetblue;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 15px;
+   
+}
+
+.banna{
+    position: relative;
+    bottom: 10px;
+}
+
+
+.si_prezzo{
+    position: relative;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color:cadetblue;
+    position: relative;
+    display: inline-block;
+    padding: 3px 3px;
+    font-size: 12px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    background-color: white;
+    border: 2px solid cadetblue;
+    border-radius: 10%;
+    box-shadow: 0 3px #999;
+    width: 70px;
+    height: 40px;
+    font-size: 80%;
+    right: 20px;
+}
+
+.si_quantita{
+    position: relative;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color:cadetblue;
+    position: relative;
+    display: inline-block;
+    padding: 3px 3px;
+    font-size: 12px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    background-color: white;
+    border: 2px solid cadetblue;
+    border-radius: 10%;
+    box-shadow: 0 3px #999;
+    width: 40px;
+    height: 40px;
+    font-size: 80%;
+    width: 70px;
+}
+
+
+.si_quantita:hover{
+    background-color: cadetblue;
+    color: #fff;
+    transition: 0.3s;
+  }
+  
+  .si_prezzo:hover{
+    background-color: cadetblue;
+    color: #fff;
+    transition: 0.3s;
+  }
+
+.plus{
+    position: relative;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color:cadetblue;
+    position: relative;
+    display: inline-block;
+    padding: 3px 3px;
+    font-size: 12px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    background-color: white;
+    border: 2px solid cadetblue;
+    border-radius: 10%;
+    box-shadow: 0 3px #999;
+    width: 40px;
+    height: 40px;
+    font-size: 80%;
+    width: 70px;
+
+    
+}
+
+.plus:hover{
+    background-color: cadetblue;
+    color: #fff;
+    transition: 0.3s;
+}
+
+.storico{
+    position: relative;
+    top: 20px;
+}
+
+.chiudi{
+    position: relative;
+    left: 45%;
+    transition-duration: 0.4s;
+    box-shadow: 0 3px #999;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color:cadetblue;
+    position: relative;
+    display: inline-block;
+    padding: 3px 3px;
+    font-size: 12px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    background-color: white;
+    border: 2px solid cadetblue;
+    border-radius: 10%;
+    box-shadow: 0 3px #999;
+    width: 100px;
+    height: 50px;
+
+    font-size: 80%;
+}
+
+.esci{
+    color: cadetblue;
+    border-style: solid;
+    border-color: cadetblue;
+    border-radius: 10px;
+    background-color: white;
+    height: 40px;
+    width: 70px;
+    position: relative;
+    right: 20px;
+}
+
+.esci:hover{
+    color: white;
+    background-color: cadetblue;
+}

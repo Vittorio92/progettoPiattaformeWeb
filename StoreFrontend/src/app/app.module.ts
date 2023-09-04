@@ -12,6 +12,8 @@ import { BarraRicercaComponent } from './components/barra-ricerca/barra-ricerca.
 import { AcquistiComponent } from './components/acquisti/acquisti.component';
 import { NegozioProdottiComponent } from './components/negozio-prodotti/negozio-prodotti.component';
 import { AggiungiProdottoComponent } from './components/aggiungi-prodotto/aggiungi-prodotto.component';
+import { AdminPageComponent } from './components/admin-page/admin-page.component';
+import { SupportComponent } from './components/support/support.component';
 
 
 function initializeKeycloak(keycloak: KeycloakService):()=> Promise<boolean> {
@@ -37,6 +39,8 @@ function initializeKeycloak(keycloak: KeycloakService):()=> Promise<boolean> {
     AcquistiComponent,
     NegozioProdottiComponent,
     AggiungiProdottoComponent,
+    AdminPageComponent,
+    SupportComponent,
   ],
   imports: [
     BrowserModule,

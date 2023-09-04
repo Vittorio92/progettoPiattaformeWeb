@@ -1,0 +1,28 @@
+
+body{
+    
+    background: rgb(206, 218, 219);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+h1{
+    text-align: center;
+    color:cadetblue; 
+    width: 1000;
+    text-shadow: 1.35px 1.35px rgb(10, 10, 9);
+}
+p{
+    padding-left: 100px;
+    padding-right: 700px;
+    position: relative; 
+    top: 110px;
+    text-shadow: 1px 1px cadetblue;
+    text-align: justify;
+}
+img{
+    position: relative;
+    left: 800px;
+    top: -160px;
+
+}
+
+
