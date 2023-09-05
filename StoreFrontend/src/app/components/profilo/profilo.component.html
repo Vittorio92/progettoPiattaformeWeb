@@ -1,0 +1,62 @@
+<div class="wrapper">
+
+    <div class="left">
+        <div id="container" *ngIf="!aggiungi">
+            <div class="product-details">
+                <h1>Benvenuto {{utente.nome}} {{utente.cognome}} </h1>
+                <p class="information">
+                    Email: {{utente.email}}
+                    <br>
+                    Data di nascita: {{utente.dataNascita}}
+                </p>
+            </div>
+        </div>
+
+        <div id="container2" *ngIf="aggiungi">
+            <div class="product-details">
+                <form name="form" (ngSubmit)="registra()" #f="ngForm" novalidate>
+                    <div>
+                        <div class="title">Aggiungi nuovo prodotto</div>
+                        <div class="subtitle">Compila tutti i campi Obbligatori (*)</div>
+                        <div class="input-container ic2">
+                            <input name="citta" #citta [(ngModel)]="form.citta" class="input" type="text" placeholder=" " />
+                            <div class="cut"></div>
+                            <label for="citta" class="placeholder">* Citta</label>
+                        </div>
+                        <div class="input-container ic2">
+                            <input name="via" #via [(ngModel)]="form.via" class="input" type="text" placeholder=" " />
+                            <div class="cut"></div>
+                            <label for="via" class="placeholder">* Via</label>
+                        </div>
+                        <div class="input-container ic2">
+                            <input name="numero" #numero [(ngModel)]="form.numeroCivico"  class="input" type="text" placeholder=" " (keypress)="numberOnly($event)" />
+                            <div class="cut cut-short"></div>
+                            <label for="numero" class="placeholder">* Numero civico</label>
+                        </div>
+                        <div class="input-container ic2">
+                            <input name="cap" #cap [(ngModel)]="form.cap"  class="input" type="text" placeholder=" " (keypress)="numberOnly($event)" />
+                            <div class="cut cut-short"></div>
+                            <label for="cap" class="placeholder">* CAP</label>
+                        </div>            
+                        <button type="text" class="submit">Registra</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="right">
+            <h1>Indirizzi utente:</h1>
+            <button class="plus" (click)="addIndirizzo()">Registra nuovo indirizzo </button>
+            <mat-card *ngFor="let i of indirizzi" style="width: 80%; margin-bottom: 10px;">
+                <mat-card-content>
+                    <div>
+                        <h1>
+                            {{i.via}} N° {{i.numeroCivico}}, {{i.citta}}, {{i.cap}}
+                        </h1>
+                        <button class="button" (click)="eliminaI(i)">Elimina</button>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+    </div>
+</div>

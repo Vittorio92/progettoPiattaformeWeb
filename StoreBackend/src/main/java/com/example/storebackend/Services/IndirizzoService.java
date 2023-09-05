@@ -26,10 +26,10 @@ public class IndirizzoService {
     private UtenteRepository utenteRepository;
 
     @Transactional(readOnly = true,propagation = Propagation.SUPPORTS, isolation = Isolation.READ_COMMITTED)
-    public List<Indirizzo> getAllIndirizziUtente(int idUtente) throws UtenteInesistenteException, NessunIndirizzoException {
-        if(! utenteRepository.existsById(idUtente))
+    public List<Indirizzo> getAllIndirizziUtente(String email) throws UtenteInesistenteException, NessunIndirizzoException {
+        if(! utenteRepository.existsByEmail(email))
             throw new UtenteInesistenteException();
-        Utente u = utenteRepository.findById(idUtente);
+        Utente u = utenteRepository.findByEmail(email);
         List<Indirizzo> indirizzi= indirizzoRepository.findAllByUtente(u);
         if(indirizzi.size()<=0)
             throw new NessunIndirizzoException();

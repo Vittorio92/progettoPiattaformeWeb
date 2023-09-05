@@ -88,24 +88,10 @@ public class OrdineService {
             throw new UtenteInesistenteException();
         Utente u = utenteRepository.findByEmail(email);
 
-        Indirizzo spedizione=indirizzoSpedizione;
-        boolean esiste=false;
-        List<Indirizzo> indirizziUtente = indirizzoRepository.findAllByUtente(u);
-        for(Indirizzo i: indirizziUtente)
-            if(i.equals(indirizzoSpedizione)) {
-                spedizione=i;
-                esiste = true;
-                break;
-            }
-
-        if(!esiste){
-            spedizione.setUtente(u);
-            indirizzoRepository.save(spedizione);
-        }
+        Indirizzo spedizione=indirizzoRepository.findById(indirizzoSpedizione.getId());
 
         LinkedList<ProdottoInCarrello> prodotti=new LinkedList<>();
         Ordine ordine=new Ordine();
-        ordine.setCarrello(prodotti);
 
         List<ProdottoInCarrello> carrelloProdottiOrdine=u.getCarrello();
         if(carrelloProdottiOrdine.size()<=0)
@@ -121,23 +107,28 @@ public class OrdineService {
             if(pic.getPrezzo() != pic.getProdotto().getPrezzo())
                 throw new PrezzoCambiatoException();
 
+            pic.getProdotto().setQnt(nuovaQnt);
 
             //creo il prodotto che verrà mostrato nell'acquisto
-            ProdottoInCarrello newpic = new ProdottoInCarrello(pic.getProdotto(), pic.getQnt(), pic.getPrezzo(), pic.getUtente());
+            ProdottoInCarrello newpic = new ProdottoInCarrello();
+
+            newpic.setPrezzo(pic.getPrezzo());
+            newpic.setQnt(pic.getQnt());
+            newpic.setProdotto(pic.getProdotto());
             //associo l'ordine al prodotto
             newpic.setOrdine(ordine);
             //aggiungo il prodotto alla lista
             prodottoInCarrelloRepository.save(newpic);
-            ordine.getCarrello().add(newpic);
+            prodotti.add(newpic);
             //rimuovo il prodotto perchè è venduto
             prodottoInCarrelloRepository.delete(pic);
-
-            pic.getProdotto().setQnt(nuovaQnt);
         }
 
         ordine.setAcquirente(u);
+        ordine.setCarrello(prodotti);
         ordine.setData(new Date(System.currentTimeMillis()));
         ordine.setSpedizione(spedizione);
+
         ordineRepository.save(ordine);
 
         return ordine;

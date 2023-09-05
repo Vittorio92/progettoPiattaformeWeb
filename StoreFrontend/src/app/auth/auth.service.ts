@@ -64,6 +64,16 @@ export class AuthService {
     return currUser.family_name + currUser.given_name;
   }
 
+  public getNome(){
+    const currUser:User= <User> this.oauthService.getIdentityClaims();
+    return currUser.family_name;
+  }
+
+  public getCognome(){
+    const currUser:User= <User> this.oauthService.getIdentityClaims();
+    return currUser.given_name;
+  }
+
   public getInfoAboutUser():jsonToken{
     const token=this.oauthService.getAccessToken();
     const decodedToken=<jsonToken>jwtDecode(token);
@@ -73,7 +83,7 @@ export class AuthService {
   public isAdmin(){
     const token=this.oauthService.getAccessToken();
     const decodedToken=<jsonToken>jwtDecode(token);
-    return decodedToken.realm_access.roles.includes('admin');
+    return decodedToken.realm_access.roles.includes('app_admin');
   }
 
 }

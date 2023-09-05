@@ -67,7 +67,7 @@ export class AdminPageComponent implements OnInit {
   }
 
   conferma_prezzo(indice: number, prezzo: string): void {
-    if (new Number(prezzo) <= 0) {
+    if (parseInt(prezzo) <= 0) {
       alert("Attenzione prezzo inserito non valido!");
     }
     else {
@@ -81,7 +81,7 @@ export class AdminPageComponent implements OnInit {
   }
 
   conferma_quantita(indice: number, quantita: string): void {
-    if (new Number(quantita) < 0) {
+    if (parseInt(quantita) < 0) {
       alert("Attenzione quantità inserita non valida!");
     }
     else {
@@ -111,10 +111,6 @@ export class AdminPageComponent implements OnInit {
   non_eliminare(indice: number) {
     this.eliminare[indice] = false;
   }
-
-  
-  
-  
 
   prezzo(indice: number): void{
 

@@ -12,25 +12,35 @@ export class AggiungiProdottoComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   prodotti : Prodotto[] = new Array();
+  form: any = {
+    nome: null,
+    squadra: null,
+    prezzo: null,
+    quantita: null,
+    tipologia: null,
+    link: null
+  }
 
   ngOnInit(): void {
     this.mostra_opere()
   }
 
-  crea(nome: string, squadra: string, prezzo: string, quantita: string, tipologia: string, link:string){
+  crea(){
     
 
-    if (nome == null || squadra == null || prezzo == null || parseInt(prezzo)<=0 || quantita == null || parseInt(quantita)<=0){
+    if (this.form.nome == null || this.form.squadra == null || this.form.tipologia == null || this.form.prezzo<=0 || this.form.link == null || this.form.quantita<=0){
       alert("Non hai inserito tutti i campi correttamente !")
     }
     else{
     let p: Prodotto = new Prodotto();
-    p.nome = nome;
-    p.squadra = squadra
-    p.prezzo = parseInt(prezzo);
-    p.qnt = parseInt(quantita);
-    p.tipologia = tipologia;
-    p.immagine = link;
+    p.nome = this.form.nome;
+    p.squadra = this.form.squadra;
+    p.prezzo = this.form.prezzo
+    p.qnt = this.form.quantita
+    p.tipologia = this.form.tipologia
+    p.immagine = this.form.link;
+
+    console.log(p);
 
     
     this.http.post<Prodotto>("http://localhost:8081/prodotto/add", p ).subscribe({

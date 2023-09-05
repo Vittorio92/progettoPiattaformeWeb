@@ -24,9 +24,9 @@ public class IndirizzoController {
     private IndirizzoService indirizzoService;
 
     @GetMapping("/get_indirizzi_utente")
-    public ResponseEntity<List<Indirizzo>> getAllIndirizziUtente(@RequestParam(value = "id") int id){
+    public ResponseEntity<List<Indirizzo>> getAllIndirizziUtente(@RequestParam(value = "email") String email){
         try {
-            List<Indirizzo> risultato =indirizzoService.getAllIndirizziUtente(id);
+            List<Indirizzo> risultato =indirizzoService.getAllIndirizziUtente(email);
             return new ResponseEntity<>(risultato, HttpStatus.OK);
         }catch (UtenteInesistenteException e){
             return new ResponseEntity(new Messaggio("L'utente indicato non esiste"), HttpStatus.BAD_REQUEST);

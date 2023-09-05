@@ -6,10 +6,7 @@ import com.example.storebackend.Services.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/login")
@@ -21,11 +18,9 @@ public class LoginController {
 
 
     @GetMapping("/logged")
-    public ResponseEntity<Utente> checkLogged() {
-        String email= Utils.getEmail();
-        String[] nominativo=Utils.getName();
-        String nome=nominativo[0];
-        String cognome=nominativo[1];
+    public ResponseEntity<Utente> checkLogged(@RequestParam(value = "email") String email,
+                                              @RequestParam(value = "nome") String nome,
+                                              @RequestParam(value = "cognome") String cognome) {
         Utente currUser=loginService.addOrgetUtente(email,nome,cognome);
         return new ResponseEntity<>(currUser, HttpStatus.OK);
     }

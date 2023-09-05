@@ -1,4 +1,9 @@
 <header>
+    <div *ngIf="auth.isauthenticated() && auth.isAdmin()">
+        <button (click)="mostra_admin()" class="admin">
+            Admin-Page
+        </button>
+    </div>
     <h1 class="title"> Store Calcio </h1>
 
     <!--Barra di navigazione-->
@@ -34,9 +39,15 @@
                             </button>
                         </li>
                         <li *ngIf="auth.isauthenticated()">
+                            <button class="button" (click)="mostra_profilo()">Profilo</button>
+                        </li>
+                        <li *ngIf="auth.isauthenticated()">
                             <button class="log-out-button" (click)="logout()">
                                 Log-Out
                             </button>
+                        </li>
+                        <li>
+                            <button class="button" (click)="mostra_support()">Support</button>
                         </li>
                     </ul>
                 </div>
@@ -52,6 +63,9 @@
                 <app-barra-ricerca *ngIf="barraRicerca_visibile"></app-barra-ricerca>
                 <app-negozio-prodotti *ngIf="negozio_visibile"></app-negozio-prodotti>
                 <app-carrello *ngIf="carrello_visibile"></app-carrello>
+                <app-admin-page *ngIf="admin_visibile" ></app-admin-page>
+                <app-support *ngIf="support_visibile"></app-support>
+                <app-profilo *ngIf="profilo_visibile"></app-profilo>
             </div>
         </div>
     </div>

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
 import { ProdottoInCarrello } from 'src/app/models/prodottoInCarrello.models';
 import { Ordine } from 'src/app/models/ordine.models';
+import { Indirizzo } from 'src/app/models/indirizzo.models';
 
 @Component({
   selector: 'app-carrello',
@@ -20,12 +21,22 @@ export class CarrelloComponent implements OnInit {
   ngOnInit(): void {
     this.mostraCarrello()
     this.calcolaPrezzo()
+    this.getIndirizzi();
   }
 
   prodotti: ProdottoInCarrello[]= new Array();
   num: number[] = new Array();
   storicoAcquisti : boolean = false;
+  list: Indirizzo[] =new Array();
+  form: any ={
+    spedizione: null
+  }
 
+  getIndirizzi(): void{
+    this.http.get<Indirizzo[]>("http://localhost:8081/indirizzo/get_indirizzi_utente?email="+this.auth.getEmail()).subscribe(ris => {
+      this.list=ris;
+    });
+  }
   
 
   diminuisci(indice: number): void{
@@ -59,11 +70,16 @@ export class CarrelloComponent implements OnInit {
       alert("Il carrello è vuoto")
     }
     else{
-    this.http.put<Ordine>("http://localhost:8081/ordine/add_ordine?email="+this.auth.getEmail(), null).subscribe(ris=>{  
+      let ind: Indirizzo = new Indirizzo();
+      for(let i = 0; i < this.list.length; i++){
+        if(this.list[i].id == this.form.spedizione){
+          ind=this.list[i];
+        }
+      }
+    this.http.post<Ordine>("http://localhost:8081/ordine/add_ordine?email="+this.auth.getEmail(), ind).subscribe(ris=>{  
     alert("Acquisto effettuato con successo")
       this.prodotti = new Array();
-      
-    })
+    });
   }
   }
 

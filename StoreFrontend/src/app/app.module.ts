@@ -14,6 +14,10 @@ import { NegozioProdottiComponent } from './components/negozio-prodotti/negozio-
 import { AggiungiProdottoComponent } from './components/aggiungi-prodotto/aggiungi-prodotto.component';
 import { AdminPageComponent } from './components/admin-page/admin-page.component';
 import { SupportComponent } from './components/support/support.component';
+import { ProfiloComponent } from './components/profilo/profilo.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatSelectModule} from '@angular/material/select';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 function initializeKeycloak(keycloak: KeycloakService):()=> Promise<boolean> {
@@ -41,6 +45,7 @@ function initializeKeycloak(keycloak: KeycloakService):()=> Promise<boolean> {
     AggiungiProdottoComponent,
     AdminPageComponent,
     SupportComponent,
+    ProfiloComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +58,10 @@ function initializeKeycloak(keycloak: KeycloakService):()=> Promise<boolean> {
   }),
   KeycloakAngularModule,
   HttpClientModule,
-  FormsModule
+  FormsModule,
+  MatCardModule,
+  MatSelectModule,
+  BrowserAnimationsModule
   ],
   providers: [ {
     provide: APP_INITIALIZER,
