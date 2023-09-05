@@ -28,10 +28,10 @@ public class ProdottoController {
     }
 
     @GetMapping("/get_paginate")
-    public ResponseEntity<List<Prodotto>> visualizzazionePaginata(@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber, @RequestParam(value = "pageSize", defaultValue = "10") int pageSize, @RequestParam(value = "ordinamento", defaultValue = "nome",required = false) String ordinamento) {
+    public ResponseEntity<List<Prodotto>> visualizzazionePaginata(@RequestParam(value = "pageNumber", defaultValue = "0") int pageNumber, @RequestParam(value = "pageSize", defaultValue = "5") int pageSize, @RequestParam(value = "ordinamento", defaultValue = "nome",required = false) String ordinamento) {
         List<Prodotto> result = prodottoService.visualizzazionePaginata(pageNumber,pageSize, ordinamento);
         if ( result.size() <= 0 ) {
-            return new ResponseEntity(new Messaggio("Nessun risultato"), HttpStatus.OK);
+            return new ResponseEntity(new Messaggio("Nessun risultato"), HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(result, HttpStatus.OK);
     }

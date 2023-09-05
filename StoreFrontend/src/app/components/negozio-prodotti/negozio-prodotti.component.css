@@ -11,7 +11,6 @@ body {
     
     #container{
         box-shadow: 0 15px 30px 1px grey;
-        background: rgba(255, 255, 255, 0.90);
         text-align: center;
         border-radius: 20px;
         overflow: hidden;
@@ -36,10 +35,9 @@ body {
     
     #container .product-details h1{
         font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-        color:cadetblue;
+        color:#5333ed;
         display: inline-block;
         position: relative;
-        color: cadetblue;
         margin: 0;
         
     }
@@ -51,13 +49,12 @@ body {
         top: 0%;
         transform: translate(25px, -15px);
         font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-        color:cadetblue;
+        color:#5333ed;
         display: inline-block;
         background: #ffe6e6;
         border-radius: 5px;
         font-size: 14px;
         padding: 5px;
-        color: white;
         margin: 0;
         animation: chan-sh 6s ease infinite;
     
@@ -83,14 +80,14 @@ body {
     
         transform: translateY(0px);
         transition: 0.3s linear;
-        background:  cadetblue;
+        background:  white;
         border-radius: 5px;
         position: relative;
         overflow: hidden;
         cursor: pointer;
         outline: none;
-        border: none;
-        color: #eee;
+        border-color: #5333ed;
+        color: black;
         padding: 0;
         margin: 0;
         text-align: center;
@@ -98,7 +95,7 @@ body {
     }
     
     .btn:hover{transform: translateY(-6px);
-        background: cadetblue;
+        background: #e1fae8;
         text-align: center;
         size: 50%;
     }
@@ -114,7 +111,7 @@ body {
     }
     .btn .price, .shopping-cart{
         font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-        background: #333;
+        background: #e1fae8;
         border: 0;
         margin: 0;
     }
@@ -142,7 +139,7 @@ body {
     #container img {width: 100%;height: 100%;}
     
     .info {
-        background: rgba(48, 157, 176, 0.9);
+        background: rgba(202, 241, 248, 0.9);
         font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         transition: all 0.3s ease-out;
         transform: translateX(-100%);
@@ -151,7 +148,7 @@ body {
         text-align: left;
         font-size: 105%;
         cursor: no-drop;
-        color: #FFF;
+        color: black;
         height: 100%;
         width: 100%;
         left: 0;
@@ -202,16 +199,16 @@ p{
 
 .card {
     text-align: center;
-    box-shadow: 0 10px 20px 0 cadetblue;
+    box-shadow: 0 10px 20px 0 #e1fae8;
     transition: 0.3s;
     width: 40%;
     border-radius: 10px;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    color: cadetblue;
+    color: #e1fae8;
 }
 
 .card:hover {
-    box-shadow: 20px 30px 40px 0 cadetblue;
+    box-shadow: 20px 30px 40px 0 #e1fae8;
 }
 
 .containers {
@@ -231,17 +228,15 @@ p{
     height: 80px;
     width: 150px;
     text-align: center;
-    background-color: cadetblue; 
+    background-color: white; 
     border: none;
-    color: white;
+    color: black;
     padding: 15px 15px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    background-color: white;
-    color: cadetblue;
-    border: 2px solid cadetblue; 
+    border: 2px solid #5333ed; 
     border-radius: 5px;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
@@ -252,15 +247,13 @@ p{
 }
 
 .button:hover {
-    
-    background-color: cadetblue; 
-    color: white;
+    background-color: #e1fae8; 
 }
 
 .num{
     
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    color:cadetblue;
+    color:black;
     text-align: center;
 
 }
@@ -268,43 +261,76 @@ p{
 .plus{
     position: relative;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    color:cadetblue;
+    color:black;
     position: relative;
-    top: 40px;
+    top: 37px;
     left: 55px;
     display: inline-block;
     padding: 3px 3px;
-    font-size: 12px;
+    font-size: 18px;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
     outline: none;
     background-color: white;
-    border: 2px solid cadetblue;
+    border: 2px solid #5333ed;
     border-radius: 10%;
     box-shadow: 0 3px #999;
-    width: 20px;
-    font-size: 80%;
+    width: 40px;
+    height: 40px;
 }
 
 .minus{
     position: relative;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    color:cadetblue;
+    color:black;
     position: relative;
-    left: 140px;
-    bottom: 40px;
+    left: 160px;
+    bottom: 35px;
     display: inline-block;
     padding: 3px 3px;
-    font-size: 12px;
+    font-size: 18px;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
     outline: none;
     background-color: white;
-    border: 2px solid cadetblue;
+    border: 2px solid #5333ed;
     border-radius: 10%;
     box-shadow: 0 3px #999;
-    width: 20px;
-    font-size: 80%;
+    width: 40px;
+    height: 40px;
+}
+
+.sotto{
+    position: fixed;
+    bottom: 0;
+    padding-bottom: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.paginazione{
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+
+    text-align: center;
+    height: 60px;
+    width: 150px;
+    background-color: white; 
+    color: black;
+    padding: 15px 15px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border: 2px solid #5333ed; 
+    border-radius: 5px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    transition-duration: 0.4s;
+    box-shadow: 0 3px #999;
+}
+
+.paginazione:hover {
+    background-color: #e1fae8; 
 }

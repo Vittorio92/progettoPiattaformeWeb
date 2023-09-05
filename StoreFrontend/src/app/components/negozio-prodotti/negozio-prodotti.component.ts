@@ -15,21 +15,35 @@ export class NegozioProdottiComponent implements OnInit {
   tipologia: boolean = true;
   prodotti: Prodotto[]= new Array();
   num: number[] = new Array();
+  page: number = 0;
+  dA: boolean=false;
+  dD: boolean=true;
+  nessunRisultato: boolean=false;
 
   constructor(public http: HttpClient, public auth: AuthService) { }
 
   ngOnInit(): void {
-    this.mostra_opere()
+    this.mostra_prodotti()
   }
 
-  mostra_opere(): void{
-   this.http.get<Prodotto[]>("http://localhost:8081/prodotto/get_all").subscribe(ris => {
-      this.prodotti = ris
-      for(let i = 0; i< this.prodotti.length; i++){
+  mostra_prodotti(): void{
+    this.page=0;
+    this.dD=true;
+    this.http.get<Prodotto[]>("http://localhost:8081/prodotto/get_paginate?pageNumber="+this.page).subscribe({
+      error: (err: any) => {
+        this.dA=true;
+        this.nessunRisultato=true;
+
+      },next: (ris: Prodotto[]) => {
+        this.prodotti = ris
+        for(let i = 0; i< this.prodotti.length; i++){
         this.num[i] = 0;
+        }
+        this.dA=false;
+        this.nessunRisultato=false;
+
       }
     });
-    console.log(this.prodotti.length)
   }
 
   aumenta(p: Prodotto): void{
@@ -67,5 +81,48 @@ export class NegozioProdottiComponent implements OnInit {
         alert("Prodotto aggiunto al carrello correttamente !")
       });
     }
+  }
+
+  paginaPrec(): void {
+    this.page--;
+    this.dA=false;
+    if(this.page === 0){
+      this.dD=true;
+    }
+    this.http.get<Prodotto[]>("http://localhost:8081/prodotto/get_paginate?pageNumber="+this.page).subscribe({
+      error: (err: any) => {
+        this.dA=true;
+        this.nessunRisultato=true;
+      },
+      next: (ris: Prodotto[]) => {
+        this.prodotti = ris
+        for(let i = 0; i< this.prodotti.length; i++){
+        this.num[i] = 0;
+        }
+        this.dA=false;
+        this.nessunRisultato=false;
+      }
+    });
+
+  }
+
+  paginaSucc(): void {
+    this.page++;
+    this.dD=false;
+    this.http.get<Prodotto[]>("http://localhost:8081/prodotto/get_paginate?pageNumber="+this.page).subscribe({
+      error: (err: any) => {
+        this.dA=true;
+        this.nessunRisultato=true;
+
+      },
+      next: (ris: Prodotto[]) => {
+        this.prodotti = ris
+        for(let i = 0; i< this.prodotti.length; i++){
+        this.num[i] = 0;
+        }
+        this.dA=false;
+        this.nessunRisultato=false;
+      }
+    });
   }
 }

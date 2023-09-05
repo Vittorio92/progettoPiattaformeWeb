@@ -16,7 +16,7 @@ export class AppComponent {
 
   barraRicerca_visibile: boolean = false
   carrello_visibile: boolean = false
-  negozio_visibile: boolean = false
+  negozio_visibile: boolean = true
   admin_visibile: boolean = false
   support_visibile: boolean = false
   profilo_visibile: boolean = false
@@ -42,7 +42,10 @@ export class AppComponent {
   }
 
   mostra_barraRicerca(): void {
-    this.loginS.getOrAdd(this.auth.getEmail(), this.auth.getNome(), this.auth.getCognome()).subscribe();
+    if(this.auth.isauthenticated()){
+      this.loginS.getOrAdd(this.auth.getEmail(), this.auth.getNome(), this.auth.getCognome()).subscribe();
+    }
+    
     this.barraRicerca_visibile = true;
     this.carrello_visibile = false;
     this.profilo_visibile = false;
@@ -56,18 +59,23 @@ export class AppComponent {
       alert("Effettuare il log-in per visualizzare il carrello");
     }
     else {
-      this.loginS.getOrAdd(this.auth.getEmail(), this.auth.getNome(), this.auth.getCognome()).subscribe();
+      if(this.auth.isauthenticated()){
+        this.loginS.getOrAdd(this.auth.getEmail(), this.auth.getNome(), this.auth.getCognome()).subscribe();
+      }
       this.barraRicerca_visibile = false;
-    this.carrello_visibile = true;
-    this.profilo_visibile = false;
-    this.negozio_visibile = false;
-    this.admin_visibile = false;
-    this.support_visibile = false;
+      this.carrello_visibile = true;
+      this.profilo_visibile = false;
+      this.negozio_visibile = false;
+      this.admin_visibile = false;
+      this.support_visibile = false;
     }
   }
 
   mostra_prodotti(): void {
-    this.loginS.getOrAdd(this.auth.getEmail(), this.auth.getNome(), this.auth.getCognome()).subscribe();
+    if(this.auth.isauthenticated()){
+      this.loginS.getOrAdd(this.auth.getEmail(), this.auth.getNome(), this.auth.getCognome()).subscribe();
+    }
+
     this.barraRicerca_visibile = false;
     this.carrello_visibile = false;
     this.profilo_visibile = false;
@@ -77,7 +85,10 @@ export class AppComponent {
   }
 
   mostra_support(): void{
-    this.loginS.getOrAdd(this.auth.getEmail(), this.auth.getNome(), this.auth.getCognome()).subscribe();
+    if(this.auth.isauthenticated()){
+      this.loginS.getOrAdd(this.auth.getEmail(), this.auth.getNome(), this.auth.getCognome()).subscribe();
+    }
+
     this.barraRicerca_visibile = false;
     this.carrello_visibile = false;
     this.profilo_visibile = false;
@@ -87,7 +98,6 @@ export class AppComponent {
   }
 
   mostra_admin(): void{
-    this.loginS.getOrAdd(this.auth.getEmail(), this.auth.getNome(), this.auth.getCognome()).subscribe();
     this.barraRicerca_visibile = false;
     this.carrello_visibile = false;
     this.profilo_visibile = false;
@@ -97,7 +107,10 @@ export class AppComponent {
   }
 
   mostra_profilo(): void{
-    this.loginS.getOrAdd(this.auth.getEmail(), this.auth.getNome(), this.auth.getCognome()).subscribe();
+    if(this.auth.isauthenticated()){
+      this.loginS.getOrAdd(this.auth.getEmail(), this.auth.getNome(), this.auth.getCognome()).subscribe();
+    }
+
     this.barraRicerca_visibile = false;
     this.carrello_visibile = false;
     this.profilo_visibile = true;

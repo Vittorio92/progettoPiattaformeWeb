@@ -1,14 +1,32 @@
 h1{
     text-align: center;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    color:cadetblue;
+    color: #5333ed;
     font-size: 300%;
-    background-color: cadetblue;
+    background-color: #5333ed;
     -webkit-background-clip: text;
     -moz-background-clip: text;
     background-clip: text;
     color: transparent;
     text-shadow: rgba(255,255,255,0.5) 0px 3px 3px;
+}
+
+.title{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+h2{
+  text-align: left;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: #5333ed;
+  font-size: 150%;
+  background-color: #5333ed;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: rgba(255,255,255,0.5) 0px 3px 3px;
 }
 
 .navigation-bar{
@@ -26,12 +44,13 @@ a{
 }
 
 .container{
-    margin: 0px 80px;
+    margin-top: 15px;
+    margin-bottom: 10px;
 }
 
-.logo{
-    position:relative;
-    left: 100px;
+.navigazione{
+  margin-top: 15px;
+  margin-bottom: 10px;
 }
 
 .ricerca {
@@ -45,29 +64,25 @@ a{
 
 }
 
- .log-in {
+.log-in {
     position: relative;
     top: 2.7px;
 }
 
 .button {
-    height: 50px;
-    width: 90px;
+    height: 65px;
+    width: 100px;
     text-align: center;
-    background-color: cadetblue; 
+    background-color: white; 
     border: none;
-    color: white;
+    color: black;
     padding: 15px 15px;
-    text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
-    background-color: white;
-    color: cadetblue;
-    border: 2px solid cadetblue; 
+    font-size: 15px;
+    border: 2px solid #5333ed; 
     border-radius: 5px;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-   
 }
 
 .button {
@@ -76,9 +91,7 @@ a{
   }
   
 .button:hover {
-    
-    background-color: cadetblue; 
-    color: white;
+    background-color: #e1eaf8; 
 }
 
 .search-button {
@@ -94,12 +107,12 @@ a{
     outline: none;
     color: #fff;
     background-color: white;
-    border: 2px solid cadetblue;
+    border: 2px solid #5333ed;
     border-radius: 100%;
     box-shadow: 0 3px #999;
   }
   
-  .search-button:hover {background-color: cadetblue}
+  .search-button:hover {background-color: #e1eaf8;}
   
   .cart-button{
     position: relative;
@@ -114,13 +127,13 @@ a{
     outline: none;
     color: #fff;
     background-color: white;
-    border: 2px solid cadetblue;
+    border: 2px solid #5333ed;
     border-radius: 100%;
     box-shadow: 0 3px #999;
   }
 
   .cart-button:hover{
-    background-color: cadetblue
+    background-color: #e1eaf8;
   }
 
   .log-in-button{
@@ -129,37 +142,24 @@ a{
     right: 70px;
     display: inline-block;
     padding: 3px 3px;
-    font-size: 12px;
+    font-size: 15px;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
     outline: none;
-    color: #fff;
+    color: black;
     background-color: white;
-    border: 2px solid cadetblue;
+    border: 2px solid #5333ed;
     border-radius: 100%;
     box-shadow: 0 3px #999;
   }
 
   .log-in-button:hover{
-    background-color: cadetblue
+    background-color: #e1eaf8;
   }
- 
 
 /*Stile barra di navigazione*/
-nav{
-    color:cadetblue;
-    background-color: white;
-    width: 100%;
-    height: 48px;
-    padding: 10px;
-    border: 2px solid cadetblue;
-}
-nav .navigazione{ 
-    color:cadetblue;
-    display: flex;
-    justify-content: space-between;
-}
+
 
 .barra-di-navigazione ul li{
     display: inline-block;
@@ -167,38 +167,9 @@ nav .navigazione{
     font-size: 20px;
     position: relative;
     bottom: 30px;
+    top: 15px;
     left: 14%;
 }
-
-.log-out-button{
-    position: relative;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    color:cadetblue;
-    position: relative;
-    right: 140px;
-    bottom: 3px;
-    display: inline-block;
-    padding: 3px 3px;
-    font-size: 12px;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    outline: none;
-    background-color: white;
-    border: 2px solid cadetblue;
-    border-radius: 10%;
-    box-shadow: 0 3px #999;
-    width: 100px;
-    height: 50px;
-
-    font-size: 80%;
-   
-}
-
-.log-out-button:hover{
-    background-color: cadetblue;
-    color: #fff;
-  }
 
 p{
   position: relative;
@@ -247,13 +218,10 @@ p{
     box-shadow: 0 3px #999;
     width: 100px;
     height: 50px;
-
     font-size: 80%;
   }
 
   .admin:hover{
-
-
   background-color: red;
   color: #fff;
   }

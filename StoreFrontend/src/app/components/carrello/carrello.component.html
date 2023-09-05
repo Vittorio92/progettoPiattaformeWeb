@@ -1,5 +1,5 @@
 <h1 style="text-align: center; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-color: cadetblue;"> Carrello di {{auth.getInfoAboutUser().name}} </h1>
+color: #5333ed; margin-top: 25px;"> Carrello di {{auth.getInfoAboutUser().name}} </h1>
 <ul *ngFor="let i of prodotti" list-style-type="none">
     <li>
         <div id="container">
@@ -46,20 +46,22 @@ color: cadetblue;"> Carrello di {{auth.getInfoAboutUser().name}} </h1>
 
 <div class="riepilogo">
     <h1 style="text-align: center; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    color: cadetblue; font-size: 50px;">
+    color: #5333ed; font-size: 50px;">
         Riepilogo Carrello!
     </h1>
     <p style="text-align: center; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    color: cadetblue; font-size: 30px;"  >Prezzo totale: <b style="color: black; position: relative; left:20px;">{{calcolaPrezzo()}}€</b></p>
+    color: #5333ed; font-size: 30px;"  >Prezzo totale: <b style="color: black; position: relative; left:20px;">{{calcolaPrezzo()}}€</b></p>
+    <h1 style="text-align: center; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #5333ed; font-size: 30px;">Indicare indirizzo di spedizione</h1>
     <form name="form" (ngSubmit)="f.form.valid && acquista()" #f="ngForm" novalidate>
-        <h1 style="text-align: center; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-        color: cadetblue; font-size: 30px;">Indicare indirizzo di spedizione</h1>
+        <div class="riepilogo2">
         <mat-form-field style="width: 200px;">
             <mat-select name="spedizione" [(ngModel)]="form.spedizione" required #spedizione="ngModel">
                 <mat-option *ngFor="let c of list" value="{{c.id}}"> {{c.citta}}, {{c.via}} {{c.numeroCivico}}, {{c.cap}} </mat-option>
             </mat-select>
         </mat-form-field>
         <button class="compra" style="font-size: 30px;">Acquista!</button>
+        </div>
     </form>
     <br>
     <br>

@@ -10,13 +10,20 @@
     <nav>
         <div class="container">
             <div class="navigazione">
-                <div class="barra-di-navigazione" style="margin-inline:30px ;">
+                <div class="barra-di-navigazione">
+                    <div *ngIf="auth.isauthenticated()">
+                        <h2>Benvenuto {{auth.getNome()}} {{auth.getCognome()}}</h2>
+                    </div>
                     <ul class="fill">
-                        <li *ngIf="auth.isauthenticated()">
-                            <p>Benvenuto {{auth.getNomeECognome()}}</p>
+                        <li class="circle">
+                            <button *ngIf="!auth.isauthenticated()" class="log-in-button" (click)="login()">
+                                <img class="log-in" src="/assets/immagini/login.png" alt="Log-in" width="30px"
+                                    height="30px">
+                                    Login
+                            </button>
                         </li>
                         <li>
-                            <button class="button" (click)="mostra_prodotti()">Negozio prodotti</button>
+                            <button class="button" (click)="mostra_prodotti()">Negozio</button>
                         </li>
                         <li class="circle">
                             <button class="search-button" (click)="mostra_barraRicerca()">
@@ -25,24 +32,16 @@
                             </button>
                         </li>
                         <li class="circle">
-                            <a href="#Carrello" target="_self">
-                                <button class="cart-button" (click)="mostra_carrello()">
-                                    <img class="carrello" src="/assets/immagini/carrello.jpeg" width="40px"
-                                        height="40px">
-                                </button>
-                            </a>
-                        </li>
-                        <li class="circle">
-                            <button *ngIf="!auth.isauthenticated()" class="log-in-button" (click)="login()">
-                                <img class="log-in" src="/assets/immagini/login.png" alt="Log-in" width="30px"
-                                    height="30px">
+                            <button class="cart-button" (click)="mostra_carrello()">
+                                <img class="carrello" src="/assets/immagini/carrello.jpeg" width="40px"
+                                    height="40px">
                             </button>
                         </li>
                         <li *ngIf="auth.isauthenticated()">
                             <button class="button" (click)="mostra_profilo()">Profilo</button>
                         </li>
                         <li *ngIf="auth.isauthenticated()">
-                            <button class="log-out-button" (click)="logout()">
+                            <button class="button" (click)="logout()">
                                 Log-Out
                             </button>
                         </li>

@@ -1,28 +1,29 @@
 
 body{
-    
-    background: rgb(206, 218, 219);
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
+
+.wrapper{
+    text-align: center;
+    border: 3px solid #5333ed;
+    margin-top: 50px;
+    width: 50%;
+    transform: translateX(50%)
+
+}
+
 h1{
     text-align: center;
-    color:cadetblue; 
+    color: #5333ed; 
     width: 1000;
     text-shadow: 1.35px 1.35px rgb(10, 10, 9);
+    font-size: 250%;
 }
 p{
-    padding-left: 100px;
-    padding-right: 700px;
-    position: relative; 
-    top: 110px;
-    text-shadow: 1px 1px cadetblue;
-    text-align: justify;
-}
-img{
-    position: relative;
-    left: 800px;
-    top: -160px;
-
+    text-shadow: 1px 1px #e1eaf8;
+    text-align: center;
+    color: #5333ed;
+    font-size: 150%;
 }
 
 

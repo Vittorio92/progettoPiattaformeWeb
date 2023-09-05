@@ -18,6 +18,7 @@ import { ProfiloComponent } from './components/profilo/profilo.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatSelectModule} from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatButtonModule} from '@angular/material/button';
 
 
 function initializeKeycloak(keycloak: KeycloakService):()=> Promise<boolean> {
@@ -61,7 +62,8 @@ function initializeKeycloak(keycloak: KeycloakService):()=> Promise<boolean> {
   FormsModule,
   MatCardModule,
   MatSelectModule,
-  BrowserAnimationsModule
+  BrowserAnimationsModule,
+  MatButtonModule
   ],
   providers: [ {
     provide: APP_INITIALIZER,

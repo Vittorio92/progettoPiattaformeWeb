@@ -1,6 +1,5 @@
 *{
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    color:white;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -19,7 +18,6 @@ body{
     align-items: center;
     position: relative;
     top: 255px;
-   
 }
 
 
@@ -32,13 +30,10 @@ body{
 
     bottom: 150px;
     position: relative;
-  
-
-   
 }
 
 .search_box{
-    background: cadetblue;
+    background: #e1eaf8;
     position: relative;
     right: 500px;
     bottom: 300px;
@@ -49,8 +44,8 @@ body{
     
 }
 
-.search_box_artista{
-    background: cadetblue;
+.search_box_squadra{
+    background: #e1eaf8;
     right: 500px;
     bottom: 300px;
     padding: 15px;
@@ -64,7 +59,7 @@ body{
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: rgb(137, 183, 184);
+    background: #e1eaf8;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -74,11 +69,11 @@ body{
 }
 
 
-.search_box_artista .search_button{
+.search_box_squadra .search_button{
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: rgb(137, 183, 184);
+    background: #e1eaf8;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -90,19 +85,19 @@ body{
 .search_box .input_search{
     outline: none;
     border: 0;
-    background: rgb(137, 183, 184);
-    color: white;
+    background: #e1eaf8;
+    color: black;
     padding: 15px 20px;
     width: 300px;
     height: 50px;
     border-radius: 50px;
 }
 
-.search_box_artista .input_search{
+.search_box_squadra .input_search{
     outline: none;
     border: 0;
-    background: rgb(137, 183, 184);
-    color: white;
+    background: #e1eaf8;
+    color: black;
     padding: 15px 20px;
     width: 300px;
     height: 50px;
@@ -110,24 +105,24 @@ body{
 }
 
 ::placeholder{
-    color: rgb(124, 132, 133);
+    color: black;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 20px;
    
 }
 
 ::-webkit-input-placeholder{
-    color: white;
+    color: black;
     font-size: 20px;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .search_box .search_button:hover{
-    background-color: rgb(41, 89, 91);
+    background-color: #e1eaf8;
 }
 
 
-.Artista{
+.Squadra{
     position: relative;
     bottom: 1069px;
     width: 500px;
@@ -135,14 +130,13 @@ body{
     display: flex;
     justify-content: center;
     height: 100px;
- 
+
 }
 
 .categorie{
     position: relative;
     left: 36%;
     bottom: 470px;
-   
 }
 body {
     display: grid;
@@ -151,30 +145,26 @@ body {
     margin: 0;
     padding: 40px;
     box-sizing: border-box;
-  
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
- }
-  
-  
-  .rad-label {
+}
+
+.rad-label {
     display: flex;
     align-items: center;
-  
     border-radius: 100px;
     padding: 14px 16px;
     margin: 10px 0;
     width: 300px;
     cursor: pointer;
     transition: .3s;
-  }
-  
-  .rad-label:hover,
-  .rad-label:focus-within {
-    background: hsla(0, 0%, 80%, .14);
+}
+
+.rad-label:hover,
+.rad-label:focus-within {
+    background: #e1eaf8;
     width: 300px;
-  }
-  
-  .rad-input {
+}
+.rad-input {
     position: absolute;
     left: 0;
     top: 0;
@@ -182,36 +172,34 @@ body {
     height: 1px;
     opacity: 0;
     z-index: -1;
-  }
-  
-  .rad-design {
+}
+
+.rad-design {
     width: 22px;
     height: 22px;
     border-radius: 100px;
-  
-    background: linear-gradient(to right bottom, rgb(196, 238, 239), cadetblue);
+
+    background: linear-gradient(to right bottom, rgb(196, 238, 239), #5333ed);
     position: relative;
-  }
-  
-  .rad-design::before {
+}
+
+.rad-design::before {
     content: '';
-  
     display: inline-block;
     width: inherit;
     height: inherit;
     border-radius: inherit;
-  
     background: hsl(0, 0%, 90%);
     transform: scale(1.1);
     transition: .3s;
-  }
-  
-  .rad-input:checked+.rad-design::before {
+}
+
+.rad-input:checked+.rad-design::before {
     transform: scale(0);
-  }
-  
-  .rad-text {
-    color: rgb(196, 238, 239);
+}
+
+.rad-text {
+    color: black;
     margin-left: 14px;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -220,189 +208,173 @@ body {
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 
     transition: .3s;
-  }
-  
-  .rad-input:checked~.rad-text {
-    color: cadetblue;
-  }
-  
+}
 
-  .risultato{
+.rad-input:checked~.rad-text {
+    color: #5333ed;
+}
+
+.risultato{
 
     height: 300px;
     position: relative;
     bottom: 500px;
-  }
+}
 
-  .btn_cerca{
+.btn_cerca{
     position: relative;
     left: 75%;
     bottom: 630px;
     width: 100px;
     height: 50px;
     border-radius: 10px ;
-    border-color: cadetblue ;
-    color: cadetblue;
+    border-color: #5333ed ;
+    color: black;
     background-color: white;
     border-style: solid;
     font-size: 20px;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 
 
-  }
+}
 
-  .btn_cerca:hover{
-    background-color: cadetblue;
-    color: white;
+.btn_cerca:hover{
+    background-color: #e1eaf8;
     transition: 0.3s;
-  }
-  
-  ul{
+}
+
+ul{
     list-style-type: none;
 }
 body {
     background: #DFC2F2;
-        background-image: linear-gradient( to right, #ffffb3,#ffe6e6);
-        background-attachment: fixed;	
-        background-size: cover;
-        border-radius: 100%;
-        }
+    background-image: linear-gradient( to right, #ffffb3,#ffe6e6);
+    background-attachment: fixed;	
+    background-size: cover;
+    border-radius: 100%;
+}
     
-    #container{
-        box-shadow: 0 15px 30px 1px grey;
-        background: rgba(255, 255, 255, 0.90);
-        text-align: center;
-        border-radius: 20px;
-        overflow: hidden;
-        margin: 3em auto;
-        height: 300px;
-        width: 1000px;  
-    }
+#container{
+    box-shadow: 0 15px 30px 1px grey;
+    background: rgba(255, 255, 255, 0.90);
+    text-align: center;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 3em auto;
+    height: 300px;
+    width: 1000px;  
+}
+.product-details {
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    position: relative;
+    text-align: left;
+    overflow: hidden;
+    padding: 30px;
+    height: 100%;
+    float: left;
+    width: 40%;
+}
     
+#container .product-details h1{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #5333ed;
+    display: inline-block;
+    position: relative;
+    margin: 0;
+}
     
-    
-    .product-details {
-        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-        position: relative;
-        text-align: left;
-        overflow: hidden;
-        padding: 30px;
-        height: 100%;
-        float: left;
-        width: 40%;
-    
-    }
-    
-    #container .product-details h1{
-        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-        color:cadetblue;
-        display: inline-block;
-        position: relative;
-        color: cadetblue;
-        margin: 0;
-        
-    }
-    
-    #container .product-details h1:before{
-        position: absolute;
-        content: '';
-        right: 0%; 
-        top: 0%;
-        transform: translate(25px, -15px);
-        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-        color:cadetblue;
-        display: inline-block;
-        background: #ffe6e6;
-        border-radius: 5px;
-        font-size: 14px;
-        padding: 5px;
-        color: white;
-        margin: 0;
-        animation: chan-sh 6s ease infinite;
-    
-    }
-    
-    
-    
-    
-    #container .product-details > p {
-        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-        text-align: center;
-        font-size: 18px;
-        color: #7d7d7d;
-        
-    }
-    .control{
+#container .product-details h1:before{
+    position: absolute;
+    content: '';
+    right: 0%; 
+    top: 0%;
+    transform: translate(25px, -15px);
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color:#5333ed;
+    display: inline-block;
+    background: #ffe6e6;
+    border-radius: 5px;
+    font-size: 14px;
+    padding: 5px;
+    margin: 0;
+    animation: chan-sh 6s ease infinite;    
+}
+
+#container .product-details > p {
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-align: center;
+    font-size: 18px;
+    color: black;
+}
+
+.control{
         position: absolute;
         bottom: 20%;
         left: 22.8%;
         
-    }
-    .btn {
-    
-        transform: translateY(0px);
-        transition: 0.3s linear;
-        background:  cadetblue;
-        border-radius: 5px;
-        position: relative;
-        top: 30px;
-        overflow: hidden;
-        cursor: pointer;
-        outline: none;
-        border: none;
-        color: #eee;
-        padding: 0;
-        margin: 0;
-        text-align: center;
-        
-    }
-    
-    .btn:hover{transform: translateY(-6px);
-        background: cadetblue;
-        text-align: center;
-        size: 50%;
-    }
-    
-    .btn span {
-        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-        transition: transform 0.3s;
-        display: inline-block;
-        padding: 10px 20px;
-        font-size: 1.2em;
-        margin:0;
-        
-    }
-    .btn .price, .shopping-cart{
-        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-        background: #333;
-        border: 0;
-        margin: 0;
-    }
-    
-    .btn .price {
-        transform: translateX(-10%); padding-right: 15px;
-        text-align: center;
-    }
-    
-    
-    .btn .buy {
-        z-index: 3; font-weight: bolder;
-    }
+}
 
-    .product-image {
-        transition: all 0.3s ease-out;
-        display: inline-block;
-        position: relative;
-        overflow: hidden;
-        height: 100%;
-        width: 45%;
-        display: inline-block;
-    }
-    
-    #container img {width: 100%;height: 100%;}
+.btn {
+    transform: translateY(0px);
+    transition: 0.3s linear;
+    background:  white;
+    border-radius: 5px;
+    position: relative;
+    top: 30px;
+    overflow: hidden;
+    cursor: pointer;
+    outline: none;
+    border-color: #5333ed;
+    color: black;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.btn:hover{transform: translateY(-6px);
+    background: #e1fae8;
+    text-align: center;
+    size: 50%;
+}
+
+.btn span {
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    transition: transform 0.3s;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    margin:0;
+}
+
+.btn .price, .shopping-cart{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background: #e1fae8;
+    border: 0;
+    margin: 0;
+}
+.btn .price {
+    transform: translateX(-10%); padding-right: 15px;
+    text-align: center;
+}
+
+.btn .buy {
+    z-index: 3; font-weight: bolder;
+}
+
+.product-image {
+    transition: all 0.3s ease-out;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    width: 45%;
+    display: inline-block;
+}
+
+#container img {width: 100%;height: 100%;}
     
     .info {
-        background: rgba(48, 157, 176, 0.9);
+        background: rgba(202, 241, 248, 0.9);
         font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         transition: all 0.3s ease-out;
         transform: translateX(-100%);
@@ -411,7 +383,7 @@ body {
         text-align: left;
         font-size: 105%;
         cursor: no-drop;
-        color: #FFF;
+        color: black;
         height: 100%;
         width: 100%;
         left: 0;
@@ -427,9 +399,8 @@ body {
     .product-image:hover img {transition: all 0.3s ease-out;}
     .product-image:hover img {transform: scale(1.2, 1.2);}
 
-    /*---------------------*/
 
-    .title{
+.title{
     text-align: center;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 500%;
@@ -464,16 +435,16 @@ p{
 
 .card {
     text-align: center;
-    box-shadow: 0 10px 20px 0 cadetblue;
+    box-shadow: 0 10px 20px 0 #e1eaf8;
     transition: 0.3s;
     width: 40%;
     border-radius: 10px;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    color: cadetblue;
+    color: #e1eaf8;
 }
 
 .card:hover {
-    box-shadow: 20px 30px 40px 0 cadetblue;
+    box-shadow: 20px 30px 40px 0 #e1eaf8;
 }
 
 .containers {
@@ -493,17 +464,15 @@ p{
     height: 80px;
     width: 150px;
     text-align: center;
-    background-color: cadetblue; 
+    background-color: white; 
     border: none;
-    color: white;
+    color: black;
     padding: 15px 15px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    background-color: white;
-    color: cadetblue;
-    border: 2px solid cadetblue; 
+    border: 2px solid #5333ed; 
     border-radius: 5px;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
@@ -514,7 +483,7 @@ p{
 }
 
 .button:hover {
-    background-color: cadetblue; 
+    background-color: #e1fae8; 
     color: white;
 }
 
@@ -530,45 +499,44 @@ p{
 .plus{
     position: relative;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    color:cadetblue;
+    color:black;
     position: relative;
-    top: 56px;
-    left: 53px;
+    top: 72px;
+    left: 55px;
     display: inline-block;
     padding: 3px 3px;
-    font-size: 12px;
+    font-size: 18px;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
     outline: none;
     background-color: white;
-    border: 2px solid cadetblue;
+    border: 2px solid #5333ed;
     border-radius: 10%;
     box-shadow: 0 3px #999;
-    width: 20px;
-    font-size: 80%;
+    width: 40px;
+    height: 40px;
 }
 
 .minus{
     position: relative;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    color:cadetblue;
+    color:black;
     position: relative;
-    left: 140px;
-    top: 12px;
+    left: 160px;
     display: inline-block;
     padding: 3px 3px;
-    font-size: 12px;
+    font-size: 18px;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
     outline: none;
     background-color: white;
-    border: 2px solid cadetblue;
+    border: 2px solid #5333ed;
     border-radius: 10%;
     box-shadow: 0 3px #999;
-    width: 20px;
-    font-size: 80%;
+    width: 40px;
+    height: 40px;
 }
 
 .informazioni{

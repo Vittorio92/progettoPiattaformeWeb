@@ -1,4 +1,4 @@
-<div class="ricerca">
+<div class="ricerca" style="margin-top: 50px;">
     <div class="container_1">
         <div class="search_box">
             <input style="font-size: 20px;" #nome type="text" class="input_search"
@@ -6,8 +6,8 @@
         </div>
     </div>
     <div class="container_2">
-        <div class="search_box_artista">
-            <input style="font-size: 20px;" #artista type="text" class="input_search"
+        <div class="search_box_squadra">
+            <input style="font-size: 20px; color: black" #squadra type="text" class="input_search"
                 placeholder="Inserire nome della squadra...">
         </div>
     </div>
@@ -33,7 +33,7 @@
         <div class="rad-text">COMPLETO</div>
     </label>
 </div>
-<button class="btn_cerca" (click)="cerca(nome.value, artista.value, tipologia)">Cerca</button>
+<button class="btn_cerca" (click)="cerca(nome.value, squadra.value, tipologia)">Cerca</button>
 </div>
 
 <div class="risultato">
@@ -64,7 +64,7 @@
                 <div class="info">
                     <h2> Descrizione</h2>
                     <ul class="informazioni" style="position: relative; left: 30px">
-                        <li><strong>Artista: </strong>{{i.squadra}} </li>
+                        <li><strong>Squadra: </strong>{{i.squadra}} </li>
                         <li><strong>Quantità:</strong>{{i.qnt}} </li>
                         <li><strong>Tipologia: </strong>{{i.tipologia}}</li>
                     </ul>
