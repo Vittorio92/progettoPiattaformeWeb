@@ -302,7 +302,7 @@ h1{
 }
 
 .submit {
-    background-color: #e1faf8;
+    background-color: white;
     border-color: #5333ed;
     border-radius: 12px;
     box-sizing: border-box;
@@ -317,5 +317,5 @@ h1{
 }
 
 .submit:hover {
-    background-color: white;
+    background-color: #e1faf8;
 }

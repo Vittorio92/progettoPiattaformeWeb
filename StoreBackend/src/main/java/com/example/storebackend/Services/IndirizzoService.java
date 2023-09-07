@@ -30,24 +30,17 @@ public class IndirizzoService {
         if(! utenteRepository.existsByEmail(email))
             throw new UtenteInesistenteException();
         Utente u = utenteRepository.findByEmail(email);
-        List<Indirizzo> indirizzi= indirizzoRepository.findAllByUtente(u);
+        List<Indirizzo> indirizzi= indirizzoRepository.findAllByUtenteAndAttivoTrue(u);
         if(indirizzi.size()<=0)
             throw new NessunIndirizzoException();
         return indirizzi;
     }
 
     @Transactional(readOnly = true,propagation = Propagation.SUPPORTS, isolation = Isolation.READ_COMMITTED)
-    public Indirizzo getIndirizzo(String citta, String via, int numeroC) throws IndirizzoInesistenteException {
-        if(!indirizzoRepository.existsByCittaAndViaAndNumeroCivico(citta,via,numeroC))
+    public List<Indirizzo> getIndirizzo(String citta, String via, int numeroC) throws IndirizzoInesistenteException {
+        if(!indirizzoRepository.existsByCittaAndViaAndNumeroCivicoAndAttivoTrue(citta,via,numeroC))
             throw new IndirizzoInesistenteException();
         return indirizzoRepository.findByCittaAndViaAndNumeroCivico(citta,via,numeroC);
-    }
-
-    @Transactional(readOnly = true,propagation = Propagation.SUPPORTS, isolation = Isolation.READ_COMMITTED)
-    public Indirizzo getIndirizzoCAP(int cap, String via, int numeroC) throws IndirizzoInesistenteException{
-        if(!indirizzoRepository.existsByCapAndViaAndNumeroCivico(cap,via,numeroC))
-            throw new IndirizzoInesistenteException();
-        return indirizzoRepository.findByCapAndViaAndNumeroCivico(cap,via,numeroC);
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW, isolation = Isolation.READ_COMMITTED)
@@ -58,11 +51,22 @@ public class IndirizzoService {
         Utente u=utenteRepository.findById(idUtente);
 
         //verifico l'unicità dell'indirizzo
-        if(indirizzoRepository.existsByCapAndViaAndNumeroCivico(indirizzo.getCap(), indirizzo.getVia(), indirizzo.getNumeroCivico()))
-            throw new IndirizzoEsistenteException();
+        if(indirizzoRepository.existsByCapAndViaAndNumeroCivico(indirizzo.getCap(), indirizzo.getVia(), indirizzo.getNumeroCivico())){
+            List<Indirizzo> esistenti = indirizzoRepository.findByCittaAndViaAndNumeroCivico(indirizzo.getCitta(), indirizzo.getVia(), indirizzo.getNumeroCivico());
+            for(Indirizzo i: esistenti){
+                if(i.getUtente().equals(u) && i.isAttivo())
+                    throw new IndirizzoEsistenteException();
+                else if (i.getUtente().equals(u)){
+                    i.setAttivo(true);
+                    indirizzoRepository.save(i);
+                    return i;
+                }
+            }
+        }
 
         Indirizzo nuovo=indirizzo;
         nuovo.setUtente(u);
+        nuovo.setAttivo(true);
 
         //salvo il nuovo indirizzo
         indirizzoRepository.save(nuovo);
@@ -87,7 +91,9 @@ public class IndirizzoService {
     public void eliminaIndirizzo(int id) throws IndirizzoInesistenteException{
         if(!indirizzoRepository.existsById(id))
             throw new IndirizzoInesistenteException();
-        indirizzoRepository.deleteById(id);
+        Indirizzo i = indirizzoRepository.findById(id);
+        i.setAttivo(false);
+        indirizzoRepository.save(i);
 
     }
 }

@@ -27,6 +27,13 @@ public class Indirizzo {
     @Column(name = "cap", nullable = false)
     private int cap;
 
+    @Column(name = "attivo", nullable = false)
+    private boolean attivo;
+
+    public boolean isAttivo() {
+        return attivo;
+    }
+
     @ManyToOne(optional = false, cascade = CascadeType.MERGE)
     @JoinColumn(name = "utente", referencedColumnName = "id")
     private Utente utente;
@@ -36,6 +43,7 @@ public class Indirizzo {
         this.via=via;
         this.numeroCivico=numeroCivico;
         this.cap=cap;
+        this.attivo=true;
     }
 
     public Indirizzo(){

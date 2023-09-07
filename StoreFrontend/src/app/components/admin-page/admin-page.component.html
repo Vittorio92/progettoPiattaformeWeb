@@ -1,21 +1,17 @@
 <div class="wrapper">
 
-
     <!--Pannello di sinistra-->
     <div class="left">
-        <h1 style="color: cadetblue ;">Sezione utenti</h1>
+        <h1 style="color: #5333ed ;">Sezione utenti</h1>
         <ul *ngFor="let i of utenti" list-style-type="none">
             <li>
                 <div id="container">
                     <div class="product-details">
-
                         <h1>{{i.nome}} {{i.cognome}}</h1>
-
                         <p class="information">
                             {{i.dataNascita}} <br>
                             {{i.email}} <br>
                         </p>
-
                         <div class="control">
                             <div class="banna">
                                 <button (click)="mostra_storico(utenti.indexOf(i), i.email)" class="btn">
@@ -33,9 +29,9 @@
                     </div>
                 </div>
                 <div class="elenco" *ngIf="storico[utenti.indexOf(i)]"
-                style="z-index: 1; border-style: solid; border-color: cadetblue; width: 100%; height: 100%;">
+                style="z-index: 1; border-style: solid; border-color: #5333ed; width: 100%; height: 100%;">
                 <h1 style="text-align: center; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-                color: cadetblue;">ACQUISTI</h1>
+                color: #5333ed;">ACQUISTI</h1>
                 <ul>
                     <li *ngFor="let j of storicoAcquisti" style=" position: relative; left: 200px">
                         <p style="color: black; position: relative; right: 240px;">------------------------------------</p>
@@ -59,11 +55,11 @@
                                                                                 <tbody>
                                                                                     <tr>
                                                                                         <td
-                                                                                            style="color: whitesmoke; z-index: 1; text-align: center;">
+                                                                                            style="color: #5333ed; z-index: 1; text-align: center;">
                                                                                             <p
                                                                                             style="color: black; text-align: center;">
                                                                                                 {{i.nome}}
-                                                                                                {{i.cognome}}<br>Codice
+                                                                                                {{i.cognome}}<br>ID
                                                                                                 Acquisto:
                                                                                                 {{j.id}}<br>Data:
                                                                                                 {{j.data| date:'dd/MM/YYYY'}}
@@ -84,7 +80,6 @@
                                                                                                                 {{k.qnt}}
                                                                                                             </p>
                                                                                                         </td>
-
                                                                                                         <td
                                                                                                             class="alignright">
                                                                                                             <p style="color: black;  position: relative; left:10px">   €{{k.prezzo}}
@@ -99,7 +94,7 @@
                                                                                                         </td>
                                                                                                         <td
                                                                                                             class="alignright">
-                                                                                                            <p style="color: black; "> €{{calcolaPrezzo(storicoAcquisti.indexOf(j))}}</p>
+                                                                                                            <p style="color: black; left: 10px;"> €{{calcolaPrezzo(storicoAcquisti.indexOf(j))}}</p>
                                                                                                         </td>
                                                                                                     </tr>
                                                                                                 </tbody>
@@ -138,96 +133,74 @@
         </ul>
     </div>
     <div class="line">
-        <app-aggiungi-prodotto *ngIf="scheda"></app-aggiungi-prodotto>
+
     </div>
 
-
-
-
     <!--Pannello di destra-->
-
     <div class="right">
-        <h1 style="color: cadetblue ;">Sezione prodotti</h1>
+        <h1 style="color: #5333ed ;">Sezione prodotti</h1>
         <button class="plus" (click)="aggiungi()">Aggiungi Prodotto</button>
+        <app-aggiungi-prodotto *ngIf="scheda"></app-aggiungi-prodotto>
         <ul *ngFor="let i of prodotti" list-style-type="none">
-
-
-            <div class="pannelli">
+            <div class="pannelli" style="margin-top: 30px;">
                 <!--Eliminare un prodotto-->
                 <div *ngIf="eliminare[prodotti.indexOf(i)]" class="elimina_prodotto">
-                    <p class="elimina">Sicuro di voler eliminare il prodotto {{i.nome}} con codice {{i.id}}?</p>
+                    <p class="elimina">Sicuro di voler eliminare il prodotto {{i.nome}}?</p>
                     <button class="si" (click)="elimina(i.id)"> Si </button>
                     <button class="no" (click)="non_eliminare(prodotti.indexOf(i))"> No </button>
                 </div>
-
                 <!--Modificare un prodotto-->
                 <div *ngIf="modifica[prodotti.indexOf(i)]" class="elimina_prodotto">
-                    <p class="elimina">Cosa vuoi modificare del prodotto {{i.nome}} con codice {{i.id}}?</p>
+                    <p class="elimina">Cosa vuoi modificare del prodotto {{i.nome}}?</p>
                     <button class="si_prezzo" (click)="prezzo(prodotti.indexOf(i))"> Prezzo </button>
                     <button class="si_quantita" (click)="quantita(prodotti.indexOf(i))"> Quantità </button>
                 </div>
-
                 <!--Prezzo-->
                 <div *ngIf="modifica_prezzi[prodotti.indexOf(i)]" class="modifica_prodotto">
                     <p class="prezzo_attuale" style="background-color: white;"> Prezzo attuale {{i.nome}}: {{i.prezzo}}€
                         <br>
                         <br>
                         Specificare nuovo prezzo: <input class="input_box" type="number" placeholder="0 €" #prezzo
-                            style="color: cadetblue; font-size: 15px; background-color: white;"> <input class="conferma"
+                            style="color: black; font-size: 15px; background-color: white;"> <input class="conferma"
                             type="submit" (click)="conferma_prezzo(prodotti.indexOf(i), prezzo.value)">
                         <br>
                         <br>
                 </div>
-
                 <div *ngIf="modifica_quantita[prodotti.indexOf(i)]" class="modifica_prodotto">
                     <p class="prezzo_attuale" style="background-color: white;"> Quantità attuale {{i.nome}}:
                         {{i.qnt}}
                         <br>
                         <br>
                         Cambiare quantità disponibile: <input class="input_box" type="number" placeholder="0" #quantita
-                            style="color: cadetblue; font-size: 15px; background-color: white;"> <input class="conferma"
+                            style="color: black; font-size: 15px; background-color: white;"> <input class="conferma"
                             type="submit" (click)="conferma_quantita(prodotti.indexOf(i), quantita.value)">
                     </p>
                 </div>
-
             </div>
             <li>
                 <div id="container">
                     <div class="product-details">
-
                         <h1 *ngIf="!eliminare[prodotti.indexOf(i)] || !modifica[prodotti.indexOf(i)]">{{i.nome}}</h1>
-
                         <p *ngIf="!eliminare[prodotti.indexOf(i)] || !modifica[prodotti.indexOf(i)]" class="information">
                             {{i.tipologia}}</p>
 
-
                         <!--Bottoni per iniziare a modificare o eliminare-->
-
                         <div class="control">
                             <button (click)="elimina_prodotto(prodotti.indexOf(i))" class="btn">
                                 <span class="price">!</span>
                                 <span class="buy">Elimina Prodotto </span>
                             </button>
                             <br>
-
                             <br>
                             <button (click)="modifica_prodotto(prodotti.indexOf(i))" class="btn">
                                 <span class="price">!</span>
                                 <span class="buy">Modifica Prodotto</span>
-
                             </button>
                             <br>
-
                         </div>
-
                     </div>
-
-
-
                     <div class="product-image">
-
                         <img src="/assets/immagini/{{i.immagine}}">
-
                         <div class="info">
                             <h2> Descrizione</h2>
                             <ul>
@@ -237,21 +210,8 @@
                             </ul>
                         </div>
                     </div>
-
                 </div>
-
-
-
-
-
-
             </li>
         </ul>
-
-
     </div>
-
-
-
-
 </div>

@@ -86,4 +86,9 @@ export class AuthService {
     return decodedToken.realm_access.roles.includes('app_admin');
   }
 
+  public getToken(){
+    const token=this.oauthService.getAccessToken();
+    return token;
+  }
+
 }

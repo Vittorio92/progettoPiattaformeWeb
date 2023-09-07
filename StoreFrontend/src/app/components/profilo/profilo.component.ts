@@ -53,9 +53,14 @@ export class ProfiloComponent implements OnInit {
   }
 
   registra(): void {
-    this.http.post<Indirizzo>("http://localhost:8081/indirizzo/add?id="+this.utente.id, this.form).subscribe( ris => {
-      alert("Indirizzo registrato correttamente");
-      this.ngOnInit();
+    this.http.post<Indirizzo>("http://localhost:8081/indirizzo/add?id="+this.utente.id, this.form).subscribe({
+      next: (ris: Indirizzo)  => {
+        alert("Indirizzo registrato correttamente");
+        this.ngOnInit();
+      },
+      error: (err: any) => {
+        alert("Indirizzo già registrato");
+      }
     });
   }
 

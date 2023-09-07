@@ -31,7 +31,7 @@ public class ProdottoInCarrello {
     @JsonIgnore
     private Utente utente;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ordine", referencedColumnName = "id")
     @JsonIgnore
     private Ordine ordine;

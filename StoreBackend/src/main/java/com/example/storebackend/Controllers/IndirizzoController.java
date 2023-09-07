@@ -36,19 +36,9 @@ public class IndirizzoController {
     }
 
     @GetMapping("/get")
-    public ResponseEntity<Indirizzo> getIndirizzo(@RequestParam(value = "citta") String citta, @RequestParam(value = "via") String via, @RequestParam(value = "numeroC") int numeroC){
+    public ResponseEntity<List<Indirizzo>> getIndirizzo(@RequestParam(value = "citta") String citta, @RequestParam(value = "via") String via, @RequestParam(value = "numeroC") int numeroC){
         try {
-            Indirizzo risultato=indirizzoService.getIndirizzo(citta,via,numeroC);
-            return new ResponseEntity<>(risultato, HttpStatus.OK);
-        }catch (IndirizzoInesistenteException e){
-            return new ResponseEntity(new Messaggio("L'indirizzo indicato non esiste"), HttpStatus.BAD_REQUEST);
-        }
-    }
-
-    @GetMapping("/get_cap")
-    public ResponseEntity<Indirizzo> getIndirizzoCAP(@RequestParam(value = "cap") int cap, @RequestParam(value = "via") String via, @RequestParam(value = "numeroC") int numeroC){
-        try {
-            Indirizzo risultato=indirizzoService.getIndirizzoCAP(cap,via,numeroC);
+            List<Indirizzo> risultato=indirizzoService.getIndirizzo(citta,via,numeroC);
             return new ResponseEntity<>(risultato, HttpStatus.OK);
         }catch (IndirizzoInesistenteException e){
             return new ResponseEntity(new Messaggio("L'indirizzo indicato non esiste"), HttpStatus.BAD_REQUEST);

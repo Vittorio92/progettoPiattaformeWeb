@@ -10,17 +10,16 @@ import java.util.List;
 @Repository
 public interface IndirizzoRepository extends JpaRepository<Indirizzo, Integer> {
 
+    List<Indirizzo> findAllByUtenteAndAttivoTrue(Utente u);
+
     List<Indirizzo> findAllByUtente(Utente u);
 
-    boolean existsByCittaAndViaAndNumeroCivico(String citta, String via, int numeroCivico);
+    boolean existsByCittaAndViaAndNumeroCivicoAndAttivoTrue(String citta, String via, int numeroCivico);
 
     boolean existsByCapAndViaAndNumeroCivico(int cap, String via, int numeroCivico);
 
-    Indirizzo findByCittaAndViaAndNumeroCivico(String citta, String via, int numeroCivico);
+    List<Indirizzo> findByCittaAndViaAndNumeroCivico(String citta, String via, int numeroCivico);
 
-    Indirizzo findByCapAndViaAndNumeroCivico(int cap, String via, int numeroCivico);
-
-    void deleteById(int id);
 
     Indirizzo findById(int id);
 }

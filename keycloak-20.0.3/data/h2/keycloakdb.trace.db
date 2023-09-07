@@ -323,3 +323,126 @@ org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (
 	at io.quarkus.runtime.Application.stop(Application.java:208)
 	at io.quarkus.runtime.Application.stop(Application.java:155)
 	at io.quarkus.runtime.ApplicationLifecycleManager$ShutdownHookThread.run(ApplicationLifecycleManager.java:431)
+2023-09-06 23:55:30 database: CREATE CACHED TABLE "PUBLIC"."DATABASECHANGELOGLOCK"(
+    "ID" INTEGER NOT NULL,
+    "LOCKED" BOOLEAN NOT NULL,
+    "LOCKGRANTED" TIMESTAMP,
+    "LOCKEDBY" CHARACTER VARYING(255)
+)
+org.h2.jdbc.JdbcSQLNonTransientException: IO Exception: "C:/Users/galli/OneDrive/Desktop/progettoPiattaformeWeb/progettoPiattaformeWeb/keycloak-20.0.3/data/h2/keycloakdb.mv.db"; SQL statement:
+CREATE CACHED TABLE "PUBLIC"."DATABASECHANGELOGLOCK"(
+    "ID" INTEGER NOT NULL,
+    "LOCKED" BOOLEAN NOT NULL,
+    "LOCKGRANTED" TIMESTAMP,
+    "LOCKEDBY" CHARACTER VARYING(255)
+) [90028-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:554)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:212)
+	at org.h2.mvstore.db.Store.convertMVStoreException(Store.java:171)
+	at org.h2.mvstore.db.Store.createTable(Store.java:223)
+	at org.h2.schema.Schema.createTable(Schema.java:776)
+	at org.h2.command.ddl.CreateTable.update(CreateTable.java:112)
+	at org.h2.engine.MetaRecord.prepareAndExecute(MetaRecord.java:77)
+	at org.h2.engine.Database.executeMeta(Database.java:660)
+	at org.h2.engine.Database.executeMeta(Database.java:634)
+	at org.h2.engine.Database.<init>(Database.java:357)
+	at org.h2.engine.Engine.openSession(Engine.java:92)
+	at org.h2.engine.Engine.openSession(Engine.java:222)
+	at org.h2.engine.Engine.createSession(Engine.java:201)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:338)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:122)
+	at org.h2.jdbcx.JdbcDataSource.getXAConnection(JdbcDataSource.java:322)
+	at io.agroal.pool.ConnectionFactory.createConnection(ConnectionFactory.java:232)
+	at io.agroal.pool.ConnectionPool$CreateConnectionTask.call(ConnectionPool.java:535)
+	at io.agroal.pool.ConnectionPool$CreateConnectionTask.call(ConnectionPool.java:516)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at io.agroal.pool.util.PriorityScheduledExecutor.beforeExecute(PriorityScheduledExecutor.java:75)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+Caused by: org.h2.mvstore.MVStoreException: Reading from file sun.nio.ch.FileChannelImpl@7375c64 failed at 646595 (length -1), read 0, remaining 32 [2.1.214/1]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:1004)
+	at org.h2.mvstore.DataUtils.readFully(DataUtils.java:470)
+	at org.h2.mvstore.FileStore.readFully(FileStore.java:98)
+	at org.h2.mvstore.Chunk.readBufferForPage(Chunk.java:422)
+	at org.h2.mvstore.MVStore.readPage(MVStore.java:2569)
+	at org.h2.mvstore.MVMap.readPage(MVMap.java:633)
+	at org.h2.mvstore.MVMap.readOrCreateRootPage(MVMap.java:658)
+	at org.h2.mvstore.MVMap.setRootPos(MVMap.java:643)
+	at org.h2.mvstore.MVStore.openMap(MVStore.java:702)
+	at org.h2.mvstore.MVStore.openMap(MVStore.java:648)
+	at org.h2.mvstore.tx.TransactionStore.openMap(TransactionStore.java:564)
+	at org.h2.mvstore.tx.TransactionStore.openVersionedMap(TransactionStore.java:550)
+	at org.h2.mvstore.tx.Transaction.openMap(Transaction.java:456)
+	at org.h2.mvstore.db.MVPrimaryIndex.<init>(MVPrimaryIndex.java:53)
+	at org.h2.mvstore.db.MVTable.<init>(MVTable.java:156)
+	at org.h2.mvstore.db.Store.createTable(Store.java:219)
+	... 20 more
+Caused by: java.nio.channels.ClosedByInterruptException
+	at java.base/java.nio.channels.spi.AbstractInterruptibleChannel.end(AbstractInterruptibleChannel.java:199)
+	at java.base/sun.nio.ch.FileChannelImpl.endBlocking(FileChannelImpl.java:168)
+	at java.base/sun.nio.ch.FileChannelImpl.readInternal(FileChannelImpl.java:822)
+	at java.base/sun.nio.ch.FileChannelImpl.read(FileChannelImpl.java:799)
+	at org.h2.mvstore.DataUtils.readFully(DataUtils.java:456)
+	... 34 more
+2023-09-06 23:55:30 database: opening C:/Users/galli/OneDrive/Desktop/progettoPiattaformeWeb/progettoPiattaformeWeb/keycloak-20.0.3/data/h2/keycloakdb
+org.h2.message.DbException: IO Exception: "C:/Users/galli/OneDrive/Desktop/progettoPiattaformeWeb/progettoPiattaformeWeb/keycloak-20.0.3/data/h2/keycloakdb.mv.db" [90028-214]
+	at org.h2.message.DbException.get(DbException.java:212)
+	at org.h2.mvstore.db.Store.convertMVStoreException(Store.java:171)
+	at org.h2.mvstore.db.Store.createTable(Store.java:223)
+	at org.h2.schema.Schema.createTable(Schema.java:776)
+	at org.h2.command.ddl.CreateTable.update(CreateTable.java:112)
+	at org.h2.engine.MetaRecord.prepareAndExecute(MetaRecord.java:77)
+	at org.h2.engine.Database.executeMeta(Database.java:660)
+	at org.h2.engine.Database.executeMeta(Database.java:634)
+	at org.h2.engine.Database.<init>(Database.java:357)
+	at org.h2.engine.Engine.openSession(Engine.java:92)
+	at org.h2.engine.Engine.openSession(Engine.java:222)
+	at org.h2.engine.Engine.createSession(Engine.java:201)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:338)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:122)
+	at org.h2.jdbcx.JdbcDataSource.getXAConnection(JdbcDataSource.java:322)
+	at io.agroal.pool.ConnectionFactory.createConnection(ConnectionFactory.java:232)
+	at io.agroal.pool.ConnectionPool$CreateConnectionTask.call(ConnectionPool.java:535)
+	at io.agroal.pool.ConnectionPool$CreateConnectionTask.call(ConnectionPool.java:516)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at io.agroal.pool.util.PriorityScheduledExecutor.beforeExecute(PriorityScheduledExecutor.java:75)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: IO Exception: "C:/Users/galli/OneDrive/Desktop/progettoPiattaformeWeb/progettoPiattaformeWeb/keycloak-20.0.3/data/h2/keycloakdb.mv.db"; SQL statement:
+CREATE CACHED TABLE "PUBLIC"."DATABASECHANGELOGLOCK"(
+    "ID" INTEGER NOT NULL,
+    "LOCKED" BOOLEAN NOT NULL,
+    "LOCKGRANTED" TIMESTAMP,
+    "LOCKEDBY" CHARACTER VARYING(255)
+) [90028-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:554)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	... 23 more
+Caused by: org.h2.mvstore.MVStoreException: Reading from file sun.nio.ch.FileChannelImpl@7375c64 failed at 646595 (length -1), read 0, remaining 32 [2.1.214/1]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:1004)
+	at org.h2.mvstore.DataUtils.readFully(DataUtils.java:470)
+	at org.h2.mvstore.FileStore.readFully(FileStore.java:98)
+	at org.h2.mvstore.Chunk.readBufferForPage(Chunk.java:422)
+	at org.h2.mvstore.MVStore.readPage(MVStore.java:2569)
+	at org.h2.mvstore.MVMap.readPage(MVMap.java:633)
+	at org.h2.mvstore.MVMap.readOrCreateRootPage(MVMap.java:658)
+	at org.h2.mvstore.MVMap.setRootPos(MVMap.java:643)
+	at org.h2.mvstore.MVStore.openMap(MVStore.java:702)
+	at org.h2.mvstore.MVStore.openMap(MVStore.java:648)
+	at org.h2.mvstore.tx.TransactionStore.openMap(TransactionStore.java:564)
+	at org.h2.mvstore.tx.TransactionStore.openVersionedMap(TransactionStore.java:550)
+	at org.h2.mvstore.tx.Transaction.openMap(Transaction.java:456)
+	at org.h2.mvstore.db.MVPrimaryIndex.<init>(MVPrimaryIndex.java:53)
+	at org.h2.mvstore.db.MVTable.<init>(MVTable.java:156)
+	at org.h2.mvstore.db.Store.createTable(Store.java:219)
+	... 20 more
+Caused by: java.nio.channels.ClosedByInterruptException
+	at java.base/java.nio.channels.spi.AbstractInterruptibleChannel.end(AbstractInterruptibleChannel.java:199)
+	at java.base/sun.nio.ch.FileChannelImpl.endBlocking(FileChannelImpl.java:168)
+	at java.base/sun.nio.ch.FileChannelImpl.readInternal(FileChannelImpl.java:822)
+	at java.base/sun.nio.ch.FileChannelImpl.read(FileChannelImpl.java:799)
+	at org.h2.mvstore.DataUtils.readFully(DataUtils.java:456)
+	... 34 more

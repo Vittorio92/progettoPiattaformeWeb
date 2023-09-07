@@ -37,7 +37,7 @@ export class AggiungiProdottoComponent implements OnInit {
     p.squadra = this.form.squadra;
     p.prezzo = this.form.prezzo
     p.qnt = this.form.quantita
-    p.tipologia = this.form.tipologia
+    p.tipologia = this.form.tipologia.toUpperCase();
     p.immagine = this.form.link;
 
     console.log(p);

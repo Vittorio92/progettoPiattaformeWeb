@@ -1,7 +1,9 @@
 package com.example.storebackend.Services;
 
+import com.example.storebackend.Entities.Indirizzo;
 import com.example.storebackend.Entities.Ordine;
 import com.example.storebackend.Entities.Utente;
+import com.example.storebackend.Repositories.IndirizzoRepository;
 import com.example.storebackend.Repositories.UtenteRepository;
 import com.example.storebackend.Support.Exceptions.OrdineInesistenteException;
 import com.example.storebackend.Support.Exceptions.UtenteEsistenteException;
@@ -20,6 +22,8 @@ public class UtenteService {
     @Autowired
     private UtenteRepository utenteRepository;
 
+    @Autowired
+    private IndirizzoRepository indirizzoRepository;
     @Autowired
     private ProdottoInCarrelloService prodottoInCarrelloService;
 
@@ -66,6 +70,12 @@ public class UtenteService {
         List<Ordine> ordini = u.getStorico();
         for(Ordine o : ordini){
             ordineService.eliminaOrdine(o.getId());
+        }
+
+        //elimino gli indirizzi dell'utente
+        List<Indirizzo> indirizzi = indirizzoRepository.findAllByUtente(u);
+        for(Indirizzo i: indirizzi){
+            indirizzoRepository.delete(i);
         }
 
         //elimino l'utente
