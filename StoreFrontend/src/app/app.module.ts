@@ -53,8 +53,8 @@ function initializeKeycloak(keycloak: KeycloakService):()=> Promise<boolean> {
     AppRoutingModule,
     OAuthModule.forRoot({
       resourceServer: {
-          allowedUrls: ['http://localhost:8081/'],
-          sendAccessToken: true
+          allowedUrls: ['http://localhost:8081/**'],
+          sendAccessToken: true,
       }
   }),
   KeycloakAngularModule,

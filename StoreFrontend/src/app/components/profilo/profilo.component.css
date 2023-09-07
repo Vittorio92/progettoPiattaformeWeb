@@ -166,6 +166,33 @@ card:hover {
     color: black;
 }
 
+.button2 {
+    text-align: center;
+    position: relative;
+    bottom: 15px;
+    height: 80px;
+    width: 150px;
+    text-align: center;
+    background-color: white; 
+    border: none;
+    color: black;
+    padding: 15px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border: 2px solid #5333ed; 
+    border-radius: 5px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+.button2:hover {
+    transition-duration: 0.4s;    
+    background-color: #e1faf8; 
+    color: black;
+}
+
 h1{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     color: #5333ed;

@@ -21,7 +21,6 @@ export class AuthService {
     clientId: 'StoreClient',
     scope: 'openid',
     responseType: 'code',
-    // at_hash is not present in JWT token
     disableAtHashCheck: true,
     showDebugInformation: true
   }

@@ -74,6 +74,7 @@ export class AdminPageComponent implements OnInit {
       this.prodotti[indice].prezzo = parseInt(prezzo);
       this.http.put<Prodotto>('http://localhost:8081/prodotto/update', this.prodotti[indice]).subscribe(ris => {
         this.prodotti[indice] = ris;
+        alert("Prezzo modificato correttamente!")
         this.ngOnInit();
       })
     }
@@ -88,6 +89,7 @@ export class AdminPageComponent implements OnInit {
       this.prodotti[indice].qnt = parseInt(quantita)
       this.http.put<Prodotto>('http://localhost:8081/prodotto/update', this.prodotti[indice]).subscribe(ris => {
         this.prodotti[indice] = ris
+        alert("Quantità modificata correttamente!")
         this.ngOnInit();
       })
     }
