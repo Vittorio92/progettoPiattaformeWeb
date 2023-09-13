@@ -76,11 +76,17 @@ export class CarrelloComponent implements OnInit {
           ind=this.list[i];
         }
       }
-    this.http.post<Ordine>("http://localhost:8081/ordine/add_ordine?email="+this.auth.getEmail(), ind).subscribe(ris=>{  
-    alert("Acquisto effettuato con successo")
-      this.prodotti = new Array();
+    this.http.post<Ordine>("http://localhost:8081/ordine/add_ordine?email="+this.auth.getEmail(), ind).subscribe({
+      error: (err: any) => {
+        const errore = err.error.messaggio;
+        alert("Impossibile effettuare l'acquisto: "+ errore );
+      },
+      next: (ris: Ordine) => {
+        alert("Acquisto effettuato con successo")
+        this.prodotti = new Array();
+      }
     });
-  }
+    }
   }
 
   storico(): void{
