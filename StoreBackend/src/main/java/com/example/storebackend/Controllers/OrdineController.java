@@ -27,11 +27,11 @@ public class OrdineController {
         } catch (CarrelloVuotoException e) {
             return new ResponseEntity(new Messaggio("Il carrello è vuoto."), HttpStatus.BAD_REQUEST);
         } catch (ProdottoEsauritoException e) {
-            return new ResponseEntity(new Messaggio("Prodotto non disponibile."),HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Messaggio("La quantità che si vuole acquistare non è più disponibile."),HttpStatus.BAD_REQUEST);
         } catch (UtenteInesistenteException e) {
-            return new ResponseEntity(new Messaggio("Prodotto non disponibile."),HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Messaggio("L'utente è inesistente."),HttpStatus.BAD_REQUEST);
         } catch (ProdottoInesistenteException e) {
-            return new ResponseEntity(new Messaggio("Prodotto non disponibile."),HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Messaggio("Prodotto non più disponibile."),HttpStatus.BAD_REQUEST);
         }catch (PrezzoCambiatoException e){
             return new ResponseEntity(new Messaggio("Il prezzo del prodotto è cambiato."), HttpStatus.BAD_REQUEST);
         }

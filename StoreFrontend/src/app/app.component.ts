@@ -43,7 +43,10 @@ export class AppComponent {
 
   mostra_barraRicerca(): void {
     if(this.auth.isauthenticated()){
-      this.loginS.getOrAdd(this.auth.getEmail(), this.auth.getNome(), this.auth.getCognome()).subscribe();
+      if (!this.verificato){
+        this.loginS.getOrAdd(this.auth.getEmail(), this.auth.getNome(), this.auth.getCognome()).subscribe();
+        this.verificato = true;
+      }
     }
     
     this.barraRicerca_visibile = true;
@@ -60,7 +63,10 @@ export class AppComponent {
     }
     else {
       if(this.auth.isauthenticated()){
-        this.loginS.getOrAdd(this.auth.getEmail(), this.auth.getNome(), this.auth.getCognome()).subscribe();
+        if (!this.verificato){
+          this.loginS.getOrAdd(this.auth.getEmail(), this.auth.getNome(), this.auth.getCognome()).subscribe();
+          this.verificato = true;
+        }
       }
       this.barraRicerca_visibile = false;
       this.carrello_visibile = true;
@@ -73,7 +79,10 @@ export class AppComponent {
 
   mostra_prodotti(): void {
     if(this.auth.isauthenticated()){
-      this.loginS.getOrAdd(this.auth.getEmail(), this.auth.getNome(), this.auth.getCognome()).subscribe();
+      if (!this.verificato){
+        this.loginS.getOrAdd(this.auth.getEmail(), this.auth.getNome(), this.auth.getCognome()).subscribe();
+        this.verificato = true;
+      }
     }
 
     this.barraRicerca_visibile = false;
@@ -86,7 +95,10 @@ export class AppComponent {
 
   mostra_support(): void{
     if(this.auth.isauthenticated()){
-      this.loginS.getOrAdd(this.auth.getEmail(), this.auth.getNome(), this.auth.getCognome()).subscribe();
+      if (!this.verificato){
+        this.loginS.getOrAdd(this.auth.getEmail(), this.auth.getNome(), this.auth.getCognome()).subscribe();
+        this.verificato = true;
+      }
     }
 
     this.barraRicerca_visibile = false;
@@ -108,7 +120,10 @@ export class AppComponent {
 
   mostra_profilo(): void{
     if(this.auth.isauthenticated()){
-      this.loginS.getOrAdd(this.auth.getEmail(), this.auth.getNome(), this.auth.getCognome()).subscribe();
+      if (!this.verificato){
+        this.loginS.getOrAdd(this.auth.getEmail(), this.auth.getNome(), this.auth.getCognome()).subscribe();
+        this.verificato = true;
+      }
     }
 
     this.barraRicerca_visibile = false;

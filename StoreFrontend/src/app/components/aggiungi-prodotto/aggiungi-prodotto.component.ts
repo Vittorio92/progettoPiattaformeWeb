@@ -31,6 +31,9 @@ export class AggiungiProdottoComponent implements OnInit {
     if (this.form.nome == null || this.form.squadra == null || this.form.tipologia == null || this.form.prezzo<=0 || this.form.link == null || this.form.quantita<=0){
       alert("Non hai inserito tutti i campi correttamente !")
     }
+    else if(this.form.tipologia !== 'maglia' && this.form.tipologia !== 'pantaloncino' && this.form.tipologia !== 'completo' && this.form.tipologia !== 'MAGLIA' && this.form.tipologia !== 'PANTALONCINO' && this.form.tipologia !== 'COMPLETO'){
+      alert("Tipologia inserita non corretta !");
+    }
     else{
     let p: Prodotto = new Prodotto();
     p.nome = this.form.nome;
@@ -39,9 +42,6 @@ export class AggiungiProdottoComponent implements OnInit {
     p.qnt = this.form.quantita
     p.tipologia = this.form.tipologia.toUpperCase();
     p.immagine = this.form.link;
-
-    console.log(p);
-
     
     this.http.post<Prodotto>("http://localhost:8081/prodotto/add", p ).subscribe({
       error: (err: any) => {
