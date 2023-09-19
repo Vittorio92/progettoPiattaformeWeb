@@ -22,7 +22,7 @@ export class AggiungiProdottoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.mostra_opere()
+    this.mostra_prodotti()
   }
 
   crea(){
@@ -55,7 +55,7 @@ export class AggiungiProdottoComponent implements OnInit {
     }
   }
 
-  mostra_opere(): void{
+  mostra_prodotti(): void{
     this.http.get<Prodotto[]>("http://localhost:8081/prodotto/get_all").subscribe(ris => {
       this.prodotti = ris
     });

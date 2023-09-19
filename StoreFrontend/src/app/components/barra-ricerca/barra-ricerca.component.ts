@@ -47,7 +47,7 @@ cerca(nome: string, squadra: string, tipo: string){
           this.num[i] ++;
         }
         else{
-          alert("Non sono più disponibili altri pezzi di quest'opera!")
+          alert("Non sono più disponibili altri pezzi di questo prodotto!")
         }
       }
     }
